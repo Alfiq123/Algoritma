@@ -18,13 +18,13 @@
 
 # 🔧️ Operator = +, -, *, /, <, >, <=, >=, ==
 
-# Input Karyawan
+# 👷‍♂️️ Input Karyawan
 nama = input("Masukkan Nama: ")
 status = input("Masukkan Status (K/TK): ")
 golongan = input("Masukkan Golongan Pegawai (A/B/C): ")
 jumlah_anak = int(input("Masukkan Jumlah Anak: "))
 
-# Mencari Gaji Pokok Berdasarkan Golongan
+# 💲️ Mencari Gaji Pokok Berdasarkan Golongan
 if golongan == "A":
     gaji_pokok = 3000000
 elif golongan == "B":
