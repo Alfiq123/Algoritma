@@ -43,7 +43,7 @@ if kategori_bagian == "produksi":
 elif kategori_bagian == "packing":
     gaji_pokok = 2450000
     upah_lembur = 20000
-# # 📦️ Karyawan Distribusi
+# 📦️ Karyawan Distribusi
 elif kategori_bagian == "distribusi":
     gaji_pokok = 2350000
     upah_lembur = 25000
@@ -55,7 +55,7 @@ else:
 if status == "menikah":
     tunjangan_istri = gaji_pokok * tunjangan_istri
 
-# 🧒️ Tunjangan anak (Jika punya)
+# 🧒️ Tunjangan anak (Jika punya & Kurang dari 3)
 if jumlah_anak > 0 and jumlah_anak <= 3:
     tunjangan_anak = gaji_pokok * tunjangan_anak * jumlah_anak
 
