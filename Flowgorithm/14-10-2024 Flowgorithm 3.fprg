@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="14-10-2024 Flowgorithm 3"/>
+        <attribute name="authors" value="USER"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-14 01:12:22 PM"/>
+        <attribute name="created" value="VVNFUjtERVNLVE9QLVRONUtCUVA7MjAyNC0xMC0xNDswMTowNzo1MSBQTTsyNjkx"/>
+        <attribute name="edited" value="VVNFUjtERVNLVE9QLVRONUtCUVA7MjAyNC0xMC0xNDswMToxMjoyMiBQTTsxOzI3OTM="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="luas" type="Integer" array="False" size=""/>
+            <declare name="sisi" type="Real" array="False" size=""/>
+            <output expression="&quot;Masukkan Luas segitiga sama sisi:&quot;" newline="True"/>
+            <input variable="luas"/>
+            <assign variable="sisi" expression="sqrt((4 * luas) / sqrt(3))"/>
+            <output expression="&quot;Panjang sisi segitiga sama sisi tersebut adalah: &quot; &amp; sisi" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
