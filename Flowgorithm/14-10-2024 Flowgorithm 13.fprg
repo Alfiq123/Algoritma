@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="14-10-2024 Flowgorithm 13"/>
+        <attribute name="authors" value="USER"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-15 11:52:56 AM"/>
+        <attribute name="created" value="VVNFUjtERVNLVE9QLVRONUtCUVA7MjAyNC0xMC0xNTsxMTo0OTo1NSBBTTsyNjg4"/>
+        <attribute name="edited" value="VVNFUjtERVNLVE9QLVRONUtCUVA7MjAyNC0xMC0xNTsxMTo1Mjo1NiBBTTsxOzI3OTE="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="kecepatan" type="Integer" array="False" size=""/>
+            <declare name="waktutempuh" type="Integer" array="False" size=""/>
+            <declare name="jarak" type="Real" array="False" size=""/>
+            <output expression="&quot;Masukkan kecepatan (Km/Jam):&quot;" newline="True"/>
+            <input variable="kecepatan"/>
+            <output expression="&quot;Masukkan waktu tempuh (Menit):&quot;" newline="True"/>
+            <input variable="waktutempuh"/>
+            <assign variable="jarak" expression="kecepatan * (waktutempuh / 60)"/>
+            <output expression="&quot;Jarak yang ditempuh adalah sekitar: &quot; &amp; jarak" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

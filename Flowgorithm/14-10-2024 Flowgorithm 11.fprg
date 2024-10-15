@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="14-10-2024 Flowgorithm 11"/>
+        <attribute name="authors" value="USER"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-15 11:37:37 AM"/>
+        <attribute name="created" value="VVNFUjtERVNLVE9QLVRONUtCUVA7MjAyNC0xMC0xNTsxMTozNDozOSBBTTsyNjg0"/>
+        <attribute name="edited" value="VVNFUjtERVNLVE9QLVRONUtCUVA7MjAyNC0xMC0xNTsxMTozNzozNyBBTTsxOzI3OTM="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="volume" type="Integer" array="False" size=""/>
+            <declare name="diagonalruang" type="Real" array="False" size=""/>
+            <output expression="&quot;Masukkan nilai volume:&quot;" newline="True"/>
+            <input variable="volume"/>
+            <assign variable="diagonalruang" expression="(volume^(2/3)) * sqrt(3)"/>
+            <output expression="&quot;Panjang diagonal ruang adalah: &quot; &amp; diagonalruang" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="14-10-2024 Flowgorithm 6"/>
+        <attribute name="authors" value="USER"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-15 10:16:36 AM"/>
+        <attribute name="created" value="VVNFUjtERVNLVE9QLVRONUtCUVA7MjAyNC0xMC0xNTsxMDoxMzowNiBBTTsyNjc0"/>
+        <attribute name="edited" value="VVNFUjtERVNLVE9QLVRONUtCUVA7MjAyNC0xMC0xNTsxMDoxNjozNiBBTTsxOzI3ODg="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="banyakbarang" type="Integer" array="False" size=""/>
+            <declare name="totalbayar" type="Integer" array="False" size=""/>
+            <declare name="hargasatuan" type="Integer" array="False" size=""/>
+            <output expression="&quot;Masukkan jumlah barang:&quot;" newline="True"/>
+            <input variable="banyakbarang"/>
+            <output expression="&quot;Masukkan total bayar:&quot;" newline="True"/>
+            <input variable="totalbayar"/>
+            <assign variable="hargasatuan" expression="totalbayar / banyakbarang"/>
+            <output expression="&quot;Harga satu barang tersebut senilai: Rp. &quot; &amp; hargasatuan" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

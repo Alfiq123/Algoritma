@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="14-10-2024 Flowgorithm 7"/>
+        <attribute name="authors" value="USER"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-15 10:30:04 AM"/>
+        <attribute name="created" value="VVNFUjtERVNLVE9QLVRONUtCUVA7MjAyNC0xMC0xNTsxMDoyMToyMiBBTTsyNjcx"/>
+        <attribute name="edited" value="VVNFUjtERVNLVE9QLVRONUtCUVA7MjAyNC0xMC0xNTsxMDozMDowNCBBTTsxOzI3Nzk="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="mahasiswaHadir" type="Integer" array="False" size=""/>
+            <declare name="totalMahasiswa" type="Integer" array="False" size=""/>
+            <declare name="persentase" type="Real" array="False" size=""/>
+            <output expression="&quot;Masukkan banyak mahasiswa yang hadir:&quot;" newline="True"/>
+            <input variable="mahasiswaHadir"/>
+            <output expression="&quot;Masukkan banyak mahasiswa:&quot;" newline="True"/>
+            <input variable="totalMahasiswa"/>
+            <assign variable="persentase" expression="mahasiswaHadir / totalMahasiswa"/>
+            <output expression="&quot;Persentase mahasiswa yang hadir adalah: &quot; &amp; persentase" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

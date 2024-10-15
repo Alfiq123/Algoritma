@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="14-10-2024 Flowgorithm 12"/>
+        <attribute name="authors" value="USER"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-15 11:42:23 AM"/>
+        <attribute name="created" value="VVNFUjtERVNLVE9QLVRONUtCUVA7MjAyNC0xMC0xNTsxMTozNzo0NyBBTTsyNjg2"/>
+        <attribute name="edited" value="VVNFUjtERVNLVE9QLVRONUtCUVA7MjAyNC0xMC0xNTsxMTo0MjoyMyBBTTsxOzI3ODQ="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="nilaitugas" type="Integer" array="False" size=""/>
+            <declare name="nilaiuts" type="Integer" array="False" size=""/>
+            <declare name="nilaiuas" type="Integer" array="False" size=""/>
+            <declare name="kehadiran" type="Integer" array="False" size=""/>
+            <declare name="nilaiakhir" type="Real" array="False" size=""/>
+            <output expression="&quot;Masukkan nilai tugas:&quot;" newline="True"/>
+            <input variable="nilaitugas"/>
+            <output expression="&quot;Masukkan nilai UTS:&quot;" newline="True"/>
+            <input variable="nilaiuts"/>
+            <output expression="&quot;Masukkan nilai UAS:&quot;" newline="True"/>
+            <input variable="nilaiuas"/>
+            <output expression="&quot;Masukkan persentase kehadiran:&quot;" newline="True"/>
+            <input variable="kehadiran"/>
+            <assign variable="nilaiakhir" expression="(kehadiran + 2 * nilaitugas + 3 *  nilaiuts + 4 * nilaiuas) / 10"/>
+            <output expression="&quot;Nilai Akhir Mata Kuliah adalah: &quot; &amp; nilaiakhir" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
