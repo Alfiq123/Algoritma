@@ -11,6 +11,8 @@ nilai_uts = int(input("Masukkan Nilai UTS: "))
 nilai_uas = int(input("Masukkan Nilai UAS: "))
 persentase_kehadiran = int(input("Masukkan Persentase Kehadiran: "))
 
-# Rumus + Output
+# Pengerjaan
 nilai_akhir = (persentase_kehadiran + 2 * nilai_tugas + 3 *  nilai_uts + 4 * nilai_uas) / 10
+
+# Hasilnya
 print(f"Nilai Akhir Mata Kuliah adalah: {nilai_akhir:.2f}")

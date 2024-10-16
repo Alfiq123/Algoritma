@@ -10,5 +10,6 @@ luas = int(input("Masukkan luas segitiga: "))
 
 # tinggi = luas * 2 / alas
 
+# Output
 tinggi = (2 * luas) / alas
 print("Tinggi segitiga tersebut adalah:", tinggi)

@@ -4,6 +4,8 @@
 lebar = int(input("Masukkan lebar persegi panjang: "))
 luas = int(input("Masukkan luas persegi panjang: "))
 
-# Rumus + Output
+# Rumus
 panjang = luas / lebar
+
+# Keluar-an
 print("Panjang persegi panjang tersebut adalah:", panjang)
