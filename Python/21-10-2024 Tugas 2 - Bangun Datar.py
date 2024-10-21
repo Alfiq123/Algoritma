@@ -91,7 +91,7 @@ rumus = ["LUAS", "KELILING", "VOLUME", "LUAS PERMUKAAN"]
 #                      __/ |                                           #
 #                     |___/                                            #
 
-print("""
+print(r"""
 ______  _  _  _  _      ______                                    
 | ___ \(_)| |(_)| |     | ___ \                                   
 | |_/ / _ | | _ | |__   | |_/ /  __ _  _ __    __ _  _   _  _ __  
@@ -263,7 +263,7 @@ if input_bangun_datar == "LINGKARAN":
     """)
 
 # Input Jari-Jari Lingkaran.
-while True:
+while input_bangun_datar == "LINGKARAN":
     try:
         jari_lingkaran = float(input("Masukkan Jari-Jari Lingkaran: "))
 
@@ -281,3 +281,67 @@ while True:
         continue
     else:
         break
+
+if input_bangun_datar == "JAJAR GENJANG":
+    print(r"""
+     _         _               ___              _                   
+  _ | | __ _  (_) __ _  _ _   / __| ___  _ _   (_) __ _  _ _   __ _ 
+ | || |/ _` | | |/ _` || '_| | (_ |/ -_)| ' \  | |/ _` || ' \ / _` |
+  \__/ \__,_|_/ |\__,_||_|    \___|\___||_||_|_/ |\__,_||_||_|\__, |
+            |__/                             |__/             |___/ 
+    """)
+
+# Input - Alas Jajar Genjang.
+while input_bangun_datar == "JAJAR GENJANG":
+    try:
+        alas_jajar_genjang = float(input("Masukkan Alas Jajar Genjang: "))
+    except ValueError:
+        print("🚨 Jangan Memasukkan Karakter Lain Selain Angka!")
+        continue
+    else:
+        break
+
+# Input - Tinggi Jajar Genjang.
+while input_bangun_datar == "JAJAR GENJANG":
+    try:
+        tinggi_jajar_genjang = float(input("Masukkan Tinggi Jajar Genjang: "))
+    except ValueError:
+        print("🚨 Jangan Memasukkan Karakter Lain Selain Angka!")
+        continue
+    else:
+        break
+
+# Input - Sisi Atas Jajar Genjang.
+while input_bangun_datar == "JAJAR GENJANG":
+    try:
+        satas_jajar_genjang = float(input("Masukkan Sisi Atas Jajar Genjang: "))
+    except ValueError:
+        print("🚨 Jangan Memasukkan Karakter Lain Selain Angka!")
+        continue
+    else:
+        break
+
+# Input - Sisi Bawah Genjang.
+while input_bangun_datar == "JAJAR GENJANG":
+    try:
+        ssamping_jajar_genjang = float(input("Masukkan Sisi Samping Jajar Genjang: "))
+    except ValueError:
+        print("🚨 Jangan Memasukkan Karakter Lain Selain Angka!")
+        continue
+    else:
+        break
+
+# Output - Jajar Genjang
+if input_bangun_datar == "JAJAR GENJANG":
+
+    print("\n======= Luas Jajar Genjang =======")
+    print(f"Alas Jajar Genjang: {alas_jajar_genjang:,.2f} cm")
+    print(f"Tinggi Jajar Genjang: {tinggi_jajar_genjang:,.2f} cm")
+    print(f"Rumus Luas Jajar Genjang: {alas_jajar_genjang:,.2f} cm x {tinggi_jajar_genjang:,.2f} cm")
+    print(f"Luas Jajar Genjang: {alas_jajar_genjang * tinggi_jajar_genjang:,.2f} cm²")
+
+    print("\n======= Keliling Jajar Genjang =======")
+    print(f"Sisi Atas Jajar Genjang: {satas_jajar_genjang:,.2f} cm")
+    print(f"Sisi Bawah Jajar Genjang: {ssamping_jajar_genjang:,.2f} cm")
+    print(f"Rumus Keliling Jajar Genjang: 2 x ({satas_jajar_genjang:,.2f} cm + 2 x {ssamping_jajar_genjang:,.2f}) cm")
+    print(f"Keliling Jajar Genjang: {2 * (satas_jajar_genjang + ssamping_jajar_genjang):,.2f} cm")
