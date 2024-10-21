@@ -51,23 +51,23 @@ nilai_bhs_indonesia = int(input("Masukkan Nilai Bhs. Indonesia: "))
 nilai_bhs_inggris = int(input("Masukkan Nilai Bhs. Inggris: "))
 nilai_bhs_lain = int(input("Masukkan Nilai Bhs. Lain: "))
 
-# Jika minat IPA & Nilai IPA
+# Jika minat IPA & Nilai IPA = IPA
 if minat_siswa == "IPA" and nilai_matematika  >= 80 and nilai_biologi >= 78 and nilai_fisika >= 78 and nilai_kimia >= 78:
     print("SELAMAT, KAMU MASUK IPA")
 
-# Jika minat IPA & Nilai IPS
+# Jika minat IPA & Nilai IPS = IPS
 if minat_siswa == "IPA" and nilai_matematika >= 80 and nilai_geografi >= 78 and nilai_ekonomi >= 80 and nilai_sosiologi >= 78:
     print("NILAI KAMU COCOK DI IPS")
 
-# Jika minat IPS & Nilai IPS
+# Jika minat IPS & Nilai IPS = IPS
 elif minat_siswa == "IPS" and nilai_matematika >= 80 and nilai_geografi >= 78 and nilai_ekonomi >= 80 and nilai_sosiologi >= 78:
     print("SELAMAT, KAMU MASUK IPS")
 
-# Jika minat IPS & Nilai IPA
+# Jika minat IPS & Nilai IPA = IPA
 elif minat_siswa == "IPS" and nilai_matematika >= 80 and nilai_biologi >=78 and nilai_fisika >= 78 and nilai_kimia >= 78:
     print("NILAI KAMU COCOK DI IPA")
 
-# Jika minat Bahasa & Nilai Bahasa
+# Jika minat Bahasa & Nilai Bahasa = Bahasa
 elif  minat_siswa == "Bahasa" and nilai_matematika >= 75 and nilai_bhs_indonesia >= 80 and nilai_bhs_inggris >= 78 and nilai_bhs_lain >= 75:
     print("SELAMAT, KAMU MASUK BAHASA")
 
