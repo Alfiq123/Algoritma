@@ -108,11 +108,12 @@ while True:
         input_bangun = str(input("Masukkan pilihan bangun - Datar / Ruang: ")).upper()
         if input_bangun in bangun:
             if input_bangun == "RUANG":
-                print("Bangun Ruang Belum Tersedia")
-                break
+                print("🔧 Bangun Ruang Belum Tersedia")
+                continue
             break
         else:
             print("📢 Pilihan tidak ada, silakan pilih kembali!")
+            continue
 
 # Input - Bangun Datar.
 while True:
