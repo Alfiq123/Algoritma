@@ -69,19 +69,6 @@ import math
 # • Luas permukaan: 4 x π x r²
 # • Volume: 4/3 x π x r³
 
-# List untuk memisahkan.
-bangun = ["DATAR", "RUANG"]
-bangun_datar = [
-    "PERSEGI", "PERSEGI PANJANG", "SEGITIGA", "LINGKARAN",
-    "JAJAR GENJANG", "BELAH KETUPAT", "LAYANG LAYANG", "TRAPESIUM"
-    ]
-bangun_ruang = [
-    "KUBUS", "BALOK", "PRISMA", "LIMAS",
-    "TABUNG", "KERUCUT", "BOLA"
-]
-
-# rumus = ["LUAS", "KELILING", "VOLUME", "LUAS PERMUKAAN"]
-
 #   ____                                  _____        _               #
 #  |  _ \                                |  __ \      | |              #
 #  | |_) | __ _ _ __   __ _ _   _ _ __   | |  | | __ _| |_ __ _ _ __   #
@@ -90,6 +77,20 @@ bangun_ruang = [
 #  |____/ \__,_|_| |_|\__, |\__,_|_| |_| |_____/ \__,_|\__\__,_|_|     #
 #                      __/ |                                           #
 #                     |___/                                            #
+
+# List untuk memisahkan.
+bangun = ["DATAR", "RUANG"]
+bangun_datar = [
+    "PERSEGI", "PERSEGI PANJANG", "SEGITIGA", "LINGKARAN",
+    "JAJAR GENJANG", "BELAH KETUPAT", "LAYANG LAYANG", "TRAPESIUM"
+    ]
+
+# bangun_ruang = [
+#     "KUBUS", "BALOK", "PRISMA", "LIMAS",
+#     "TABUNG", "KERUCUT", "BOLA"
+# ]
+
+# rumus = ["LUAS", "KELILING", "VOLUME", "LUAS PERMUKAAN"]
 
 print(r"""
 ______  _  _  _  _      ______                                    
