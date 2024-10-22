@@ -106,6 +106,9 @@ ______  _  _  _  _      ______
 while True:
         input_bangun = str(input("Masukkan pilihan bangun - Datar / Ruang: ")).upper()
         if input_bangun in bangun:
+            if input_bangun == "RUANG":
+                print("Bangun Ruang Belum Tersedia")
+                break
             break
         else:
             print("📢 Pilihan tidak ada, silakan pilih kembali!")
@@ -475,6 +478,9 @@ while input_bangun_datar == "TRAPESIUM":
     rumus_trapesium = str(input("Masukkan Rumus Trapesium (Luas / Keliling): ")).upper()
     if rumus_trapesium == "LUAS" or rumus_trapesium == "KELILING":
         break
+    else:
+        print("🚩 Masukkan Luas atau Keliling")
+        continue
 
 #   _                  _____                      _            
 #  | |  _  _ __ _ ___ |_   _| _ __ _ _ __  ___ __(_)_  _ _ __  
@@ -483,7 +489,7 @@ while input_bangun_datar == "TRAPESIUM":
 #                                   |_|                        
 
 # Input - Alas Atas Trapesium.
-while rumus_trapesium == "LUAS":
+while input_bangun_datar == "TRAPESIUM" and rumus_trapesium == "LUAS":
     try:
         alas_atas_trapesium = float(input("Masukkan Alas Atas Trapesium: "))
         break
@@ -491,7 +497,7 @@ while rumus_trapesium == "LUAS":
         print("🚨 Jangan Memasukkan Karakter Lain Selain Angka!")
 
 # Input - Alas Bawah Trapesium.
-while rumus_trapesium == "LUAS":
+while input_bangun_datar == "TRAPESIUM" and rumus_trapesium == "LUAS":
     try:
         alas_bawah_trapesium = float(input("Masukkan Alas Bawah Trapesium: "))
         break
@@ -499,7 +505,7 @@ while rumus_trapesium == "LUAS":
         print("🚨 Jangan Memasukkan Karakter Lain Selain Angka!")
 
 # Input - Tinggi Trapesium.
-while rumus_trapesium == "LUAS":
+while input_bangun_datar == "TRAPESIUM" and rumus_trapesium == "LUAS":
     try:
         tinggi_trapesium = float(input("Masukkan Tinggi Trapesium: "))
         break
@@ -507,7 +513,7 @@ while rumus_trapesium == "LUAS":
         print("🚨 Jangan Memasukkan Karakter Lain Selain Angka!")
 
 # Output - Luas Trapesium
-if rumus_trapesium == "LUAS":
+if input_bangun_datar == "TRAPESIUM" and rumus_trapesium == "LUAS":
     print(f"""
 ======= Luas Trapesium =======
 Alas Atas Trapesium: {alas_atas_trapesium:,.2f} cm
@@ -524,7 +530,7 @@ Luas Trapesium: {0.5 * (alas_atas_trapesium + alas_bawah_trapesium) * tinggi_tra
 #                        |___/                |_|                        
 
 # Input - Sisi AB Trapesium.
-while rumus_trapesium == "KELILING":
+while input_bangun_datar == "TRAPESIUM" and rumus_trapesium == "KELILING":
     try:
         sisi_trapesium_ab = float(input("Masukkan Sisi Trapesium AB: "))
         break
@@ -532,7 +538,7 @@ while rumus_trapesium == "KELILING":
         print("🚨 Jangan Memasukkan Karakter Lain Selain Angka!")
 
 # Input - Sisi BC Trapesium.
-while rumus_trapesium == "KELILING":
+while input_bangun_datar == "TRAPESIUM" and rumus_trapesium == "KELILING":
     try:
         sisi_trapesium_bc = float(input("Masukkan Sisi Trapesium BC: "))
         break
@@ -540,7 +546,7 @@ while rumus_trapesium == "KELILING":
         print("🚨 Jangan Memasukkan Karakter Lain Selain Angka!")
 
 # Input - Sisi CD Trapesium.
-while rumus_trapesium == "KELILING":
+while input_bangun_datar == "TRAPESIUM" and rumus_trapesium == "KELILING":
     try:
         sisi_trapesium_cd = float(input("Masukkan Sisi Trapesium CD: "))
         break
@@ -548,7 +554,7 @@ while rumus_trapesium == "KELILING":
         print("🚨 Jangan Memasukkan Karakter Lain Selain Angka!")
 
 # Input - Sisi DA Trapesium.
-while rumus_trapesium == "KELILING":
+while input_bangun_datar == "TRAPESIUM" and rumus_trapesium == "KELILING":
     try:
         sisi_trapesium_da = float(input("Masukkan Sisi Trapesium DA: "))
         break
@@ -556,7 +562,7 @@ while rumus_trapesium == "KELILING":
         print("🚨 Jangan Memasukkan Karakter Lain Selain Angka!")
 
 # Output - Keliling Trapesium
-if rumus_trapesium == "KELILING":
+if input_bangun_datar == "TRAPESIUM" and rumus_trapesium == "KELILING":
     print(f"""
 ======= Keliling Trapesium =======
 Trapesium Sisi AB: {sisi_trapesium_ab:,.2f} cm
