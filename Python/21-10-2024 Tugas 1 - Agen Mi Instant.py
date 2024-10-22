@@ -77,7 +77,7 @@ while True:
         break
 
 # Deklarasi Awal
-bonus = ""
+bonus = "Tidak ada"
 diskon = 0
 
 # Area Indomie
@@ -124,15 +124,17 @@ print(r"""
  |_| \_|\___/ \__\__,_| |_|   \___|_| |_| |_|_.__/ \___|_|_|\__,_|_| |_|
 """)
 
-print("===================================")
-print("Nama Pembeli:", nama)
-print("Merk mie yang dipilih:", merk)
-print("Jenis mie yang dipilih:", jenis)
-print(f"Jumlah Karton: {jumlah_karton} kotak")
-print("===================================")
-print(f"Harga Awal Rp. {harga:,.0f}")
-print(f"Diskon: Rp. {diskon:,.0f}")
-print(f"Harga dikurangi Diskon: Rp. {harga:,.0f} - Rp. {diskon:,.0f}")
-print("===================================")
-print(f"Total Harga: Rp. {harga - diskon:,.0f}")
-print("Bonus:", bonus)
+print(f"""
+===================================
+Nama Pembeli: {nama}
+Merk mie yang dipilih: {merk}
+Jenis mie yang dipilih: {jenis}
+Jumlah Karton: {jumlah_karton} kotak
+===================================
+Harga Awal Rp. {harga:,.0f}
+Diskon: Rp. {diskon:,.0f}
+Harga dikurangi Diskon: Rp. {harga:,.0f} - Rp. {diskon:,.0f}
+===================================
+Total Harga: Rp. {harga - diskon:,.0f}
+Bonus: {bonus}
+""")
