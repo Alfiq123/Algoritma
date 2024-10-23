@@ -34,6 +34,7 @@ jenis_mie = ["goreng", "kuah"]
 bonus = "Tidak ada"
 diskon = 0
 total_harga = 0
+total_beli = [] # Untuk menjumlahkan semua barang
 
 # Input - input dari pengguna.
 def input_dari_user():
@@ -71,12 +72,25 @@ def input_dari_user():
                 print("⛔ Tolong masukkan angka")
 
         # Hasil Awal.
-        total_harga = harga_mie[merk][jenis] * jumlah_karton
+        total = harga_mie[merk][jenis] * jumlah_karton
         print(f"Total harga untuk {jumlah_karton} karton Mi {merk} {jenis}: Rp. {total_harga:,.0f}")
+
+        # Kwitansi Semua Pembelian.
+        total_beli.append({
+            'Merk_mie': f"{merk}",
+            'Jenis_mie': f"{jenis}",
+            'Jumlah_karton': f"{jumlah_karton:,}",
+            'Total_harga': f"{harga_mie[merk][jenis] * jumlah_karton:,}"
+        })
+
+        # Tambahkan total pembelian saat ini ke total keseluruhan
+        total_harga += total_harga
 
         # Input 5 - Beli Lagi
         jawab = input("Beli lagi? (ya / tidak): ").lower()
         if jawab != "ya":
+            for pembelian in total_beli:
+                print(f" - {pembelian['Merk_mie']}: {pembelian['Jenis_mie']} x {pembelian['Jumlah_karton']} = Rp. {pembelian['Total_harga']}")
             break
 
     print("Terima kasih telah berbelanja!")
