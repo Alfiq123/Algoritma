@@ -73,7 +73,7 @@ while True:
     total_harga += total
 
     # Input Terakhir - Jika ingin mengulangi pembelian.
-    ulang = input("Apakah Anda ingin melakukan pembelian lagi? (ya/tidak): ").lower()
+    ulang = input("Apakah Anda ingin melakukan pembelian lagi? (ya / tidak): ").lower()
 
     # Jika tidak mengulangi.
     if ulang != "ya":
