@@ -505,7 +505,7 @@ Rumus Keliling Trapesium: {sisi_trapesium_ab:,.2f} cm + {sisi_trapesium_bc:,.2f}
 Keliling Trapesium: {sisi_trapesium_ab + sisi_trapesium_bc + sisi_trapesium_cd + sisi_trapesium_da:,.2f} cm
 """)
 
-while input_bangun == "RUANG":
+if input_bangun == "RUANG":
     print(r"""
   ____                                       _____                             
  |  _ \                                     |  __ \                            
@@ -525,6 +525,7 @@ while input_bangun == "RUANG":
    4. Limas
 """)
 
+while input_bangun == "RUANG":
     input_bangun_ruang = str(input("Masukkan Pilihan Bangun Ruang: ")).upper()
     if input_bangun_ruang in bangun_ruang:
         break
