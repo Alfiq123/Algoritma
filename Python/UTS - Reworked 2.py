@@ -26,14 +26,16 @@ if input_soal == "1":
             print("Green")
         elif warna_1 == ("Cyan" and warna_2 == "Magenta") or (warna_1 == "Magenta" and warna_2 == "Cyan"):
             print("Blue")
+        else:
+            print("Warna tidak ditemukan")
 
 if input_soal == "2":
     bilangan_1 = int(input("Masukkan Bilangan 1: "))
     bilangan_2 = int(input("Masukkan Bilangan 2: "))
     bilangan_3 = int(input("Masukkan Bilangan 3: "))
     if bilangan_1 < bilangan_2 < bilangan_3:
-        print("Urutan Naik")
+        print(f" {bilangan_1}, {bilangan_2}, {bilangan_3} = Urutan Naik")
     elif bilangan_1 > bilangan_2 > bilangan_3:
-        print("Urutan Turun")
+        print(f" {bilangan_1}, {bilangan_2}, {bilangan_3} = Urutan Turun")
     else:
-        print("Urutan Acak")
+        print(f" {bilangan_1}, {bilangan_2}, {bilangan_3} = Urutan Acak")
