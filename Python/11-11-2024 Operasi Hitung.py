@@ -52,10 +52,14 @@ while input_nomor == "1":
     print("────────────────────────────────────────────────")
     print()
 
-    ulang_nomor_1 = input("Apakah kamu ingin mengulanginya lagi? (ya / tidak): ").lower()
-    if ulang_nomor_1 == "ya" or ulang_nomor_1 == "y":
-        continue
-    else:
+    while True:
+        ulang_nomor_1 = input("Apakah kamu ingin mengulanginya lagi? (ya / tidak): ").lower()
+        if ulang_nomor_1 in ('ya', 'tidak','y', 't'):
+            break
+        else:
+            print("📢 Pilihannya antara 'ya' atau 'tidak''")
+
+    if ulang_nomor_1 in ('tidak', 't'):
         print("👋 Selamat tinggal 👋")
         break
 
@@ -79,10 +83,14 @@ while input_nomor == "2":
     print("────────────────────────────────────────")
     print()
 
-    ulang_nomor_2 = input("Apakah kamu ingin mengulanginya lagi? (ya / tidak): ").lower()
-    if ulang_nomor_2 == "ya" or ulang_nomor_2 == "y":
-        continue
-    else:
+    while True:
+        ulang_nomor_2 = input("Apakah kamu ingin mengulanginya lagi? (ya / tidak): ").lower()
+        if ulang_nomor_2 in ('ya', 'tidak','y', 't'):
+            break
+        else:
+            print("📢 Pilihannya antara 'ya' atau 'tidak''")
+
+    if ulang_nomor_2 in ('tidak', 't'):
         print("👋 Selamat tinggal 👋")
         break
 
@@ -114,10 +122,14 @@ while input_nomor == "3":
     print("────────────────────────────────────────")
     print()
 
-    ulang_nomor_3 = input("Apakah kamu ingin mengulanginya lagi? (ya / tidak): ").lower()
-    if ulang_nomor_3 == "ya" or ulang_nomor_3 == "y":
-        continue
-    else:
+    while True:
+        ulang_nomor_3 = input("Apakah kamu ingin mengulanginya lagi? (ya / tidak): ").lower()
+        if ulang_nomor_3 in ('ya', 'tidak','y', 't'):
+            break
+        else:
+            print("📢 Pilihannya antara 'ya' atau 'tidak''")
+
+    if ulang_nomor_3 in ('tidak', 't'):
         print("👋 Selamat tinggal 👋")
         break
 
@@ -161,10 +173,14 @@ Karena soalnya membingungkan jadi, pilih salah satu:
         print(bilangan_gengen, "adalah bilangan", genap)
         print("────────────────────────────────────────")
 
-        ulang_nomor_41 = input("Apakah kamu ingin mengulanginya lagi? (ya / tidak): ").lower()
-        if ulang_nomor_41 == "ya" or ulang_nomor_41 == "y":
-            continue
-        else:
+        while True:
+            ulang_nomor_41 = input("Apakah kamu ingin mengulanginya lagi? (ya / tidak): ").lower()
+            if ulang_nomor_41 in ('ya', 'tidak','y', 't'):
+                break
+            else:
+                print("📢 Pilihannya antara 'ya' atau 'tidak''")
+        
+        if ulang_nomor_41 in ('tidak', 't'):
             print("👋 Selamat tinggal 👋")
             break
 
@@ -186,10 +202,14 @@ Karena soalnya membingungkan jadi, pilih salah satu:
         print(bilangan_posneg, "adalah bilangan", positif)
         print("────────────────────────────────────────")
 
-        ulang_nomor_42 = input("Apakah kamu ingin mengulanginya lagi? (ya / tidak): ").lower()
-        if ulang_nomor_42 == "ya" or ulang_nomor_42 == "y":
-            continue
-        else:
+        while True:
+            ulang_nomor_42 = input("Apakah kamu ingin mengulanginya lagi? (ya / tidak): ").lower()
+            if ulang_nomor_42 in ('ya', 'tidak','y', 't'):
+                break
+            else:
+                print("📢 Pilihannya antara 'ya' atau 'tidak''")
+        
+        if ulang_nomor_42 in ('tidak', 't'):
             print("👋 Selamat tinggal 👋")
             break
 
@@ -211,9 +231,13 @@ Karena soalnya membingungkan jadi, pilih salah satu:
                 print("⚠️ Kamu memasukkan huruf atau karakter lain ⚠️")
                 continue
 
-        ulang_nomor_43 = input("Apakah kamu ingin mengulanginya lagi? (ya / tidak): ").lower()
-        if ulang_nomor_43 == "ya" or ulang_nomor_43 == "y":
-            continue
-        else:
+        while True:
+            ulang_nomor_43 = input("Apakah kamu ingin mengulanginya lagi? (ya / tidak): ").lower()
+            if ulang_nomor_43 in ('ya', 'tidak','y', 't'):
+                break
+            else:
+                print("📢 Pilihannya antara 'ya' atau 'tidak''")
+        
+        if ulang_nomor_43 in ('tidak', 't'):
             print("👋 Selamat tinggal 👋")
             break

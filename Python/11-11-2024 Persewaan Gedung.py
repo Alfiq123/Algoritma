@@ -191,9 +191,14 @@ while True:
     Total Biaya yang harus dibayar: Rp.{biaya_yang_harus_dibayar:,.0f}
     """)
 
-    ulang_lagi = str(input("Apakah anda ingin melakukan transaksi lagi? (ya / tidak): ")).upper()
-    if ulang_lagi == "YA" or ulang_lagi == "Y":
-        continue
-    else:
-        print("👋🏻 Terima kasih atas kunjungannya 👋🏻")
-    break
+    while True:
+        ulang_lagi = str(input("Apakah anda ingin melakukan transaksi lagi? (ya / tidak): ")).upper()
+        if ulang_lagi in ("YA", "TIDAK", "Y", "T"):
+            break
+        else:
+            print("❗ Masukkan pilihan yang benar")
+            continue
+
+    if ulang_lagi in ("TIDAK", "T"):
+        print("👋 Terima kasih atas kunjungannya 👋")
+        break
