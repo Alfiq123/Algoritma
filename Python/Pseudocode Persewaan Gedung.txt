@@ -1,0 +1,20 @@
+ulang selama pengguna ingin melanjutkan:
+    minta pengguna memasukkan "nama penyewa"
+    minta pengguna memilih "kategori gedung"
+    minta pengguna memasukkan "lama sewa (hari)"
+    minta pengguna memasukkan "kelebihan jam"
+
+    jika kategori gedung adalah "Pertemuan":
+        harga_sewa_per_hari = 300000
+        harga_sewa_per_jam = 50000
+    // lakukan hal yang sama untuk kategori gedung lainnya
+
+    hitung total_sewa = harga_sewa_per_hari * lama_sewa
+    hitung biaya_lebih_jam = harga_sewa_per_jam * kelebihan_jam
+
+    jika lama_sewa > 3:
+        hitung potongan = 0.1 * total_sewa
+
+    hitung total_biaya = total_sewa + biaya_lebih_jam - potongan
+
+    tampilkan nama_penyewa, total_biaya
