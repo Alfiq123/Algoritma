@@ -20,8 +20,6 @@ import math
 # Misal: Bilangan = 5, Awal = 73, Akhir = 97 → 75 80 85 90 95
 #        Bilangan = 5, Awal = 97, Akhir = 73 → 95 90 85 80 75
 
-soal_valid = (1, 2, 3, 4, 5, 6)
-
 print(r"""
 Soal Gabungan, Pilih Salah Satu.
 
@@ -33,13 +31,13 @@ Soal Gabungan, Pilih Salah Satu.
     6. Semua Angka Kelipatan Bilangan (Gabungan)
 """)
 
-pilihan_soal = int(input("Silahkan Pilih Soal yang Tersedia: "))
-while pilihan_soal not in soal_valid:
+pilihan_soal = str(input("Silahkan Pilih Soal yang Tersedia: "))
+while pilihan_soal not in ("1", "2", "3", "4", "5", "6"):
     print("❗ Kamu memasukkan soal yang tidak tersedia, silakan masukkan lagi")
-    pilihan_soal = int(input("Silahkan Pilih Soal yang Tersedia: "))
+    pilihan_soal = str(input("Silahkan Pilih Soal yang Tersedia: "))
 
 # Soal Nomor 1. Angka yang habis membagi.
-while pilihan_soal == 1:
+while pilihan_soal == "1":
     print()
     print("「 Semua angka yang habis membagi suatu bilangan 」")
     print()
@@ -68,7 +66,7 @@ while pilihan_soal == 1:
         break
 
 # Soal Nomor 2. KPK.
-while pilihan_soal == 2:
+while pilihan_soal == "2":
     print()
     print("「 Kelipatan Persekutuan Kecil 」")
     print()
@@ -107,7 +105,7 @@ KPK dari {bilangan_soal_2a} dan {bilangan_soal_2b} adalah: {math.lcm(bilangan_so
         break
 
 # Soal Nomor 3. FPB.
-while pilihan_soal == 3:
+while pilihan_soal == "3":
     print()
     print("「 Faktor Persekutuan Besar 」")
     print()
@@ -146,7 +144,7 @@ FPB dari {bilangan_soal_3a} dan {bilangan_soal_3b} adalah: {math.gcd(bilangan_so
         break
 
 # Soal Nomor 4. Angka kelipatan kecil ke besar.
-while pilihan_soal == 4:
+while pilihan_soal == "4":
     print()
     print("「 Semua Angka Kelipatan Bilangan (kecil ke besar) 」")
     print()
@@ -196,7 +194,7 @@ while pilihan_soal == 4:
         break
 
 # Soal Nomor 5. Angka kelipatan besar ke kecil.
-while pilihan_soal == 5:
+while pilihan_soal == "5":
     print()
     print("「 Semua Angka Kelipatan Bilangan (Besar ke kecil) 」")
     print()
@@ -246,7 +244,7 @@ while pilihan_soal == 5:
         break
 
 #  Soal Nomor 6. Angka kelipatan Gabungan.
-while pilihan_soal == 6:
+while pilihan_soal == "6":
     print()
     print("「 Semua Angka Kelipatan Bilangan (Gabungan) 」")
     print()

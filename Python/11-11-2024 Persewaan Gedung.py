@@ -182,8 +182,10 @@ while True:
     PT Metropolis Office Solutions
     ────────────────────────────────
     Nama Penyewa: {nama_penyewa}
-    Lama Sewa: {lama_sewa}
-    Kelebihan Jam: {kelebihan_jam}
+    Lama Sewa: {lama_sewa} Hari
+    Kelebihan Jam: {kelebihan_jam} Jam
+    Kategori Gedung: {kategori_gedung_valid[kategori_gedung]}
+    ================================
     Harga Sewa: Rp.{jumlah_harga_sewa:,.0f}
     Biaya kelebihan Jam: Rp.{biaya_kelebihan_jam:,.0f}
     Potongan: Rp.{potongan:,.0f}
