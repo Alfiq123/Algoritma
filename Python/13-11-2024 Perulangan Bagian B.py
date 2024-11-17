@@ -26,27 +26,27 @@ while pilihan_deret not in ("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"):
     print("✨ Tolong masukkan huruf yang benar! ✨")
     pilihan_deret = str(input("Masukkan Huruf yang ingin dipilih: ")).lower()
 
-# Normal.
+# A. Normal (1, 2, 3).
 if pilihan_deret == "a":
     for i in range(1, 11):
         print(i)
 
-# Normal tapi kebalik.
+# B. Normal tapi kebalik (3, 2, 1).
 elif pilihan_deret == "b":
     for i in range(10, -1, -1):
         print(i)
 
-# Setiap suku ke-n dipangkatkan 2.
+# C. Setiap suku ke-n dipangkatkan 2.
 elif pilihan_deret == "c":
     for i in range(1, 11):
         print(i ** 2)
 
-# Melompati 2 angka.
+# D. Angka Ganjil, Mulai dari 1.
 elif pilihan_deret == "d":
     for i in range(1, 16, 2):
         print(i)
 
-# Angka Genap.
+# E. Angka Genap, Mulai Dari 0.
 elif pilihan_deret == "e":
     for i in range(0, 17, 2):
         print(i)
@@ -64,8 +64,8 @@ elif pilihan_deret == "h":
         print(i)
 
 elif pilihan_deret == "i":
-    for i in range(1, 16, 3):
-        print(i)
+    for i in range(1, 11):
+        print(f"{i * (i + 1) / 2:.0f}")
 
 elif pilihan_deret == "j":
     faktorial = 1
