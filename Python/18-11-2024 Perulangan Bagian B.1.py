@@ -4,7 +4,6 @@ print("""
  | |) |/ -_)| '_|/ -_)|  _| | _ \| || |/ _` || ' \ / _` |/ _` || ' \ 
  |___/ \___||_|  \___| \__| |___/|_||_|\__,_||_||_|\__, |\__,_||_||_|
                                                    |___/             """)
-
 print("""
 Deret bilangan :
     a. 1 2 3 4 5 6 7 8 9 10
@@ -26,48 +25,71 @@ while pilihan_deret not in ("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"):
     print("✨ Tolong masukkan huruf yang benar! ✨")
     pilihan_deret = str(input("Masukkan Huruf yang ingin dipilih: ")).lower()
 
-# A. Normal (1, 2, 3).
+# A. Normal.
 if pilihan_deret == "a":
+    print("\nBilangan Berurutan\n")
     for i in range(1, 11):
         print(i)
 
-# B. Normal tapi kebalik (3, 2, 1).
+# B. Normal tapi kebalik.
 elif pilihan_deret == "b":
+    print("\nBilangan Berurutan Tapi Kebalik\n")
     for i in range(10, -1, -1):
         print(i)
 
-# C. Setiap suku ke-n dipangkatkan 2.
+# C. Deret Kuadrat Dari Bilangan Asli.
 elif pilihan_deret == "c":
+    print("\nDeret Kuadrat Dari Bilangan Asli")
+    print("Rumus: Un = n²\n")
     for i in range(1, 11):
         print(i ** 2)
 
-# D. Angka Ganjil, Mulai dari 1.
+# D. Deret Bilangan Ganjil.
 elif pilihan_deret == "d":
-    for i in range(1, 16, 2):
-        print(i)
+    print("\nBilangan Ganjil")
+    print("Rumus: Un = 2n - 1\n")
+    for i in range(1, 11):
+        print(2 * i - 1)
 
-# E. Angka Genap, Mulai Dari 0.
+# E. Deret Bilangan Genap
 elif pilihan_deret == "e":
-    for i in range(0, 17, 2):
-        print(i)
+    print("\nBilangan Genap")
+    print("Rumus: Un = 2(n - 1) - 1\n")
+    for i in range(1, 11):
+        print(2 * (i - 1))
 
+# F. Deret dengan beda 3 angka.
 elif pilihan_deret == "f":
-    for i in range(1, 23, 3):
-        print(i)
+    print("\nDeret dengan beda 3 angka")
+    print("Rumus: Un = 3n - 2\n")
+    for i in range(1, 11):
+        print(3 * i - 2)
 
+# G. Deret Kuadrat Terbalik Dari Bilangan Asli.
 elif pilihan_deret == "g":
-    for i in range(11):
-        print(f"{(10 - i) ** 2}")
+    print("\nDeret Kuadrat Terbalik")
+    print("Rumus: Un = (11 - n)²\n")
+    for i in range(1, 11):
+        print((11 - i) ** 2)
 
+# H. Deret Aritmatika Menurun dengan pengurangan -5.
 elif pilihan_deret == "h":
-    for i in range(60, 0, -5):
-        print(i)
+    print("\nDeret Aritmatika Menurun")
+    print("Rumus: Un = 65 - 5n\n")
+    for i in range(1, 11):
+        print(65 - 5 * i)
 
+# I. Deret Bilangan Segitiga.
 elif pilihan_deret == "i":
+    print("\nDeret Bilangan Segitiga")
+    print("Rumus: Un = n(n + 1) / 2\n")
     for i in range(1, 11):
         print(f"{i * (i + 1) / 2:.0f}")
 
+# J. Deret Bilangan Faktorial.
 elif pilihan_deret == "j":
+    print("\nDeret Bilangan Faktorial")
+    print("Rumus: Un = n!\n")
     faktorial = 1
     for i in range(1, 11):
         faktorial *= i
