@@ -44,6 +44,17 @@ menu_makanan = {
     },
 }
 
+# Hanya digunakan untuk memvalidasi pesanan pelanggan.
+# 🔑 Key: Menu, 🔒 Value: Harga.
+validasi_pesanan = {}
+
+# TODO: 💡 Kenapa tidak dibuat nama dan jumlah pesanan saja?.
+# 🔑 Key: Pesanan Pelanggan, 🔒 Value: Total Bayar.
+pesanan_pelanggan = {}
+
+# # 💳 Total Pembayaran.
+# total_bayar = 0
+
 # Banner.
 print(r"""
   ___        _                       ___           _                          _                _   
@@ -55,33 +66,115 @@ print(r"""
 
 print("───────────────────────── Menu ─────────────────────────")
 
-for kategori, items in menu_makanan.items():
+for kategori, menu_dan_harga in menu_makanan.items():
     print(f"Kategori: {kategori}")
 
-    for item, harga in items.items():
-        print(f" • {item:40} - Rp. {harga:,}")
+    for menu, harga in menu_dan_harga.items():
+        # validasi_pesanan.append(menu)
+        validasi_pesanan[menu] = harga
+
+        # placeholder[menu] = harga
+        
+        print(f" • {menu:40} - Rp. {harga:,}")
 
     print()
 
 print("────────────────────────────────────────────────────────")
 
-pesanan_pelanggan = {}
+# "Fungsi" untuk memesan makanan.
+def pemesanan_menu():
+    while True:
+        pesanan = str(input("Masukkan pesanan Anda ('x' untuk keluar): ")).title()
 
-while True:
-    pesanan = str(input("Masukkan pesanan Anda (kosong untuk keluar): ")).title()
+        if pesanan == "X":
+            print("\n🛍️ Terima kasih sudah berbelanja!\n")
+            break
+
+        if pesanan not in validasi_pesanan.keys():
+            print("\n🔎 Maaf, menu tersebut tidak tersedia.\n")
+
+        # else:
+        #     for kategori, menu_dan_harga in menu_makanan.items():
+
+        #         for menu, harga in menu_dan_harga.items():
+
+        #             if pesanan == menu:
+        #                 pesanan_pelanggan[menu] = harga
+        #                 print(f"\n📋 Berhasil Menambahkan {menu} ke Dalam Pesanan Anda!\n")
+
+        if pesanan in validasi_pesanan.keys():
+            try:
+                jumlah_pesanan = int(input("Masukkan Jumlah Pesanan: "))
+
+                if jumlah_pesanan <= 0:
+                    print("\n🚨 Jumlah Pesanan Harus Lebih Dari 0\n")
+                    continue
+
+                elif jumlah_pesanan >= 0:
+
+                    # print("\n🛒 Dafter Pesanan Anda:")
+                    # for pesanan, bayar in pesanan_pelanggan.items():
+                    #     print(f"• {pesanan:10} x {jumlah_pesanan}")
+                    # continue
+
+                    for kategori, menu_dan_harga in menu_makanan.items():
+                        for menu, harga in menu_dan_harga.items():
+                            if pesanan == menu:
+                                pesanan_pelanggan[menu] = jumlah_pesanan
+                                print(f"\n📋 Berhasil Menambahkan {menu} ke Dalam Pesanan Anda!\n")
+
+                    print("🛒 Daftar Pesanan Anda:")
+                    for pesanan, bayar in pesanan_pelanggan.items():
+                        print(f"• {pesanan:} x {bayar}")
+                        continue
+                    print()
+
+                # if pesanan in pesanan_pelanggan:
+                #     # Jika sudah ada, tambahkan jumlahnya
+                #     pesanan_pelanggan[pesanan][1] += jumlah_pesanan
+                # else:
+                #     # Jika belum ada, tambahkan dengan harga dan jumlah
+                #     pesanan_pelanggan[pesanan] = [validasi_pesanan[pesanan], jumlah_pesanan]
+
+            except ValueError:
+                print("\n🚨 Masukkan Jumlah Pesanan dengan angka, Silakan ulang kembali!\n")
+                continue
+
+    # # 💳 Total Pembayaran.
+    # total_bayar = 0
+    # for pesanan, bayar in pesanan_pelanggan.items():
+    #     print(f"• {pesanan:10} x {jumlah_pesanan} - Rp. {bayar * jumlah_pesanan:,}")
+    #     total_bayar += bayar * jumlah_pesanan
+    # print(f"\nTotal Bayar: Rp. {total_bayar:,}")
+
+        # 💳 Total Pembayaran.
+
+    total_bayar = 0
+    print("\n🛒 Daftar Pesanan Anda:")
+    for pesanan, (harga, jumlah) in pesanan_pelanggan.items():
+        print(f"• {pesanan:10} x {jumlah} - Rp. {harga * jumlah:,}")
+        total_bayar += harga * jumlah
+
+pemesanan_menu()
+
+    # if pesanan not in validasi_pesanan:
+    #     print("Maaf, pesanan Anda tidak tersedia.")
+    #     continue
+    # elif pesanan == "":
+    #     break
     # jumlah_pesanan = int(input("Masukkan Jumlah Pesanan: "))
 
-    for kategori, items in menu_makanan.items():
-        for item, harga in items.items():
-            if pesanan == item:
-                # pesanan_pelanggan.append((item, harga))
-                pesanan_pelanggan[item] = harga
-                print(f"\n📋 Berhasil menambahkan {item} ke dalam pesanan Anda!\n")
-                break
+    # for kategori, items in menu_makanan.items():
+    #     for item, harga in items.items():
+    #         if pesanan == item:
+    #             # pesanan_pelanggan.append((item, harga))
+    #             pesanan_pelanggan[item] = harga
+    #             print(f"\n📋 Berhasil menambahkan {item} ke dalam pesanan Anda!\n")
+    #             break
 
-    if pesanan == "":
-        print("🛒 Terima kasih telah berbelanja!")
-        break
+    # if pesanan == "":
+    #     print("🛒 Terima kasih telah berbelanja!")
+    #     break
 
     # elif menu_makanan.items() is not None:
         # print("Ada")
@@ -90,8 +183,8 @@ while True:
 
 # print(pesanan_pelanggan)
 
-for item, harga in pesanan_pelanggan.items():
-    print(f"• {item:40} - Rp. {harga:,}")
+# for item, harga in pesanan_pelanggan.items():
+#     print(f"• {item:40} - Rp. {harga:,}")
 
 
 
