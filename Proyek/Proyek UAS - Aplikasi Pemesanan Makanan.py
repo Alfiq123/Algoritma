@@ -112,30 +112,28 @@ def fungsi_utama():
                     print("\n🚨 Jumlah Pesanan Harus Lebih Dari 0\n")
                     continue
 
-                elif jumlah_pesanan >= 0:
+                '''
+                📝 Jika pesanan yang diinputkan sama dengan menu yang ada di dictionary, 
+                    maka tambahkan ke dalam dictionary pesanan.
 
-                    '''
-                    📝 Jika pesanan yang diinputkan sama dengan menu yang ada di dictionary, 
-                       maka tambahkan ke dalam dictionary pesanan.
+                📝 Jika pesanan valid dan jumlah pesanan juga valid, kode ini akan mencari menu yang sesuai dalam struktur data menu_makanan. 
+                    Jika ditemukan, pesanan akan ditambahkan ke dalam dictionary pesanan_pelanggan, yang menyimpan jumlah pesanan dan harga.
+                '''
+                for kategori, menu_dan_harga in menu_makanan.items():
+                    for menu, harga in menu_dan_harga.items():
+                        if pesanan == menu:
+                            pesanan_pelanggan[menu] = [jumlah_pesanan, harga]
+                            print(f"\n📋 Berhasil Menambahkan {menu} ke Dalam Pesanan Anda!\n")
 
-                    📝 Jika pesanan valid dan jumlah pesanan juga valid, kode ini akan mencari menu yang sesuai dalam struktur data menu_makanan. 
-                       Jika ditemukan, pesanan akan ditambahkan ke dalam dictionary pesanan_pelanggan, yang menyimpan jumlah pesanan dan harga.
-                    '''
-                    for kategori, menu_dan_harga in menu_makanan.items():
-                        for menu, harga in menu_dan_harga.items():
-                            if pesanan == menu:
-                                pesanan_pelanggan[menu] = [jumlah_pesanan, harga]
-                                print(f"\n📋 Berhasil Menambahkan {menu} ke Dalam Pesanan Anda!\n")
-
-                    """
-                    📝 Setelah menambahkan pesanan, kode ini akan menampilkan daftar semua pesanan yang telah dimasukkan oleh pelanggan, 
-                       termasuk jumlah masing-masing pesanan.
-                    """
-                    print("🛒 Daftar Pesanan Anda:")
-                    for pesanan, banyak in pesanan_pelanggan.items():
-                        print(f"• {pesanan} x {banyak[0]}")
-                        continue
-                    print()
+                """
+                📝 Setelah menambahkan pesanan, kode ini akan menampilkan daftar semua pesanan yang telah dimasukkan oleh pelanggan, 
+                    termasuk jumlah masing-masing pesanan.
+                """
+                print("🛒 Daftar Pesanan Anda:")
+                for pesanan, banyak in pesanan_pelanggan.items():
+                    print(f"• {pesanan} x {banyak[0]}")
+                    continue
+                print()
 
             except ValueError:
                 print("\n🚨 Masukkan Jumlah Pesanan dengan angka, Silakan ulang kembali!\n")
@@ -144,20 +142,22 @@ def fungsi_utama():
     # 💳 Total Pembayaran.
     print("───────────────୨ Total Pembayaran ৎ───────────────")
     total_bayar = 0
+    pajak = 0.10
     for pesanan, banyak in pesanan_pelanggan.items():
-        print(f"・ {pesanan} ― Rp, {banyak[1]:,} x {banyak[0]} = Rp. {banyak[0] * banyak[1]:,}")
+        print(f"・ {pesanan}: Rp, {banyak[1]:,} x {banyak[0]} = Rp. {banyak[0] * banyak[1]:,}")
         total_bayar += banyak[0] * banyak[1]
+    print(f"・ PPN: {pajak:.0%}")
 
     print("──────────────────────────────────────────────────")
-    print(f"Total Bayar: Rp. {total_bayar:,.2f}")
+    print(f"Total Bayar: Rp. {total_bayar + (total_bayar * pajak):,.0f}")
 
 fungsi_utama()
 
 # Beneran mengulangi pemesanan lagi.
 while True:
-    pilihan = str(input("Apakah anda ingin melanjutkan? (y/n): ")).lower()
+    pilihan = str(input("\nApakah anda ingin melakukan pemesanan lagi? (y/n): ")).lower()
     if pilihan == "y":
         fungsi_utama()
     else:
-        print("Terima kasih telah menggunakan layanan kami!")
+        print("\n🙏 Terima kasih telah menggunakan layanan kami!")
         break
