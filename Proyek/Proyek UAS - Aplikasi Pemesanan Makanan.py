@@ -88,11 +88,10 @@ def fungsi_utama():
     💡 Selain itu, bagian ini juga dapat digunakan untuk menghitung total bayar.
     """
     while True:
-        pesanan = str(input("Masukkan pesanan Anda ('x' untuk keluar): ")).title()
+        pesanan = str(input("Masukkan pesanan Anda ('X' untuk keluar): ")).title()
 
         # Jika pelanggan memasukkan "X", maka program akan berhenti.
         if pesanan == "X":
-            print("\n🛍️ Terima kasih sudah berbelanja!\n")
             break
 
         # Jika pelanggan memasukkan pesanan yang tidak ada di menu, maka program akan menampilkan pesan error.
@@ -140,24 +139,28 @@ def fungsi_utama():
                 continue
 
     # 💳 Total Pembayaran.
-    print("───────────────୨ Total Pembayaran ৎ───────────────")
-    total_bayar = 0
-    pajak = 0.10
-    for pesanan, banyak in pesanan_pelanggan.items():
-        print(f"・ {pesanan}: Rp, {banyak[1]:,} x {banyak[0]} = Rp. {banyak[0] * banyak[1]:,}")
-        total_bayar += banyak[0] * banyak[1]
-    print(f"・ PPN: {pajak:.0%}")
+    if pesanan_pelanggan:
+        print("\n───────────────୨ Total Pembayaran ৎ───────────────")
+        total_bayar = 0
+        pajak = 0.10
+        for pesanan, banyak in pesanan_pelanggan.items():
+            print(f"・ {pesanan}: Rp, {banyak[1]:,} x {banyak[0]} = Rp. {banyak[0] * banyak[1]:,}")
+            total_bayar += banyak[0] * banyak[1]
+        print(f"・ PPN: {pajak:.0%}")
 
-    print("──────────────────────────────────────────────────")
-    print(f"Total Bayar: Rp. {total_bayar + (total_bayar * pajak):,.0f}")
+        print("──────────────────────────────────────────────────")
+        print(f"Total Bayar: Rp. {total_bayar + (total_bayar * pajak):,.0f}")
 
-fungsi_utama()
-
-# Beneran mengulangi pemesanan lagi.
-while True:
-    pilihan = str(input("\nApakah anda ingin melakukan pemesanan lagi? (y/n): ")).lower()
-    if pilihan == "y":
-        fungsi_utama()
+        # Beneran mengulangi pemesanan lagi.
+        while True:
+            pilihan = str(input("\nApakah anda ingin melakukan pemesanan lagi? (y/n): ")).lower()
+            if pilihan == "y":
+                fungsi_utama()
+                break
+            else:
+                print("\n🙏 Terima kasih telah menggunakan layanan kami!")
+                break
     else:
         print("\n🙏 Terima kasih telah menggunakan layanan kami!")
-        break
+
+fungsi_utama()
