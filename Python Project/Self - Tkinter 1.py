@@ -251,17 +251,38 @@ window.title("My Tkinter")
 
 # 📄 | 12. Filedialog Open
 # def filedialog_openfile():
-    # fd_filepath = tkinter.filedialog.askopenfilename(initialdir="/home/inferno/Documents/Python Course", title="Open File", filetypes=(("Text Files", "*.txt"), ("All Files", "*.*")))
-    # fd_file = open(fd_filepath, "r")
+    # fd_open_filepath = tkinter.filedialog.askopenfilename(initialdir="/home/inferno/Documents/Python Course", title="Open File", filetypes=(("Text Files", "*.txt"), ("All Files", "*.*")))
+    # fd_open_file = open(fd_filepath, "r")
     # print(fd_file.read())
     # fd_file.close()
 
-# filedialog_button = tkinter.Button(text="Open", command=filedialog_openfile)
-# filedialog_button.pack()
+# fd_open_button = tkinter.Button(text="Open", command=filedialog_openfile)
+# fd_open_button.pack()
 
 
 
-icon = tkinter.PhotoImage(file="Icon_Python.png")
+# 💾 | 13. Filedialog Save
+# def filedialog_savefile():
+    # fd_save_file = tkinter.filedialog.asksaveasfile(initialdir="/home/inferno/Documents/Github Repository/Latihan-Algoritma/Python Project", defaultextension=".txt", filetypes=[("Text File", ".txt"), ("HTML FIle", ".html"),("All Files", ".*")])
+
+    # if fd_save_file == None:
+        # return
+
+    # fd_save_filetext = str(fd_save_text.get(1.0, tkinter.END))
+    # # fd_save_filetext = input("Enter some text: ")
+
+    # fd_save_file.write(fd_save_filetext)
+    # fd_save_file.close()
+
+# fd_save_button = tkinter.Button(text="Save", command=filedialog_savefile)
+# fd_save_button.pack()
+
+# fd_save_text = tkinter.Text(window)
+# fd_save_text.pack()
+
+
+
+icon = tkinter.PhotoImage(file="/home/inferno/Documents/Github Repository/Latihan-Algoritma/Python Project/Icon_Python.png")
 window.iconphoto(True, icon)
 
 window.mainloop()

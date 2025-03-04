@@ -1,0 +1,30 @@
+Light Themes (Bootstrap Styles)
+  • cerulean
+  • cosmo
+  • flatly
+  • journal
+  • litera
+  • lumen
+  • minty
+  • pulse
+  • sandstone
+  • simplex
+  • united
+  • yeti
+  • morph
+  
+Dark Themes (Bootstrap Styles)
+  • cyborg
+  • darkly
+  • solar
+  • superhero
+  • vapor
+  
+Standard Themes
+  • alt
+  • clam
+  • classic
+  • default
+  • vista
+  • winnative
+  • xpnative
