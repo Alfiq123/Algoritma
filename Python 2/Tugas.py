@@ -1,53 +1,72 @@
 class LimasSegiEnam:
-    def __init__(self, la, ta):
-        self.la = la
-        self.ta = ta
+    def __init__(self, luas_alas, tinggi_limas):
+        self.luas_alas = luas_alas
+        self.tinggi_limas = tinggi_limas
 
     def limas_segienam(self):
         """Volume = (1/3) Luas Alas * Tinggi Limas"""
-        volume = (1/3) * self.la * self.ta
+        volume = (1/3) * self.luas_alas * self.tinggi_limas
         return volume
     
     def limas_segienam_2(self):
         """Volume = (1/3) Luas Alas * Tinggi Limas"""
-        volume = (1/3) * self.la * self.ta
-        print(f"{volume} cm³")
+        volume = (1/3) * self.luas_alas * self.tinggi_limas
+        print(f"Volume dari limas tersebut adalah: {volume:,.0f} cm³")
 
 class Balok:
-    def __init__(self, p, l, t):
-        self.p = p
-        self.l = l
-        self.t = t
+    def __init__(self, panjang, lebar, tinggi):
+        self.panjang = panjang
+        self.lebar = lebar
+        self.tinggi = tinggi
 
     def balok(self):
         """Volume = Panjang * Lebar * Tinggi"""
-        volume = self.p * self.l * self.t
+        volume = self.panjang * self.lebar * self.tinggi
         return volume
     
     def balok_2(self):
         """Volume = Panjang * Lebar * Tinggi"""
-        volume = self.p * self.l * self.t
-        print(f"{volume} cm³")
+        volume = self.panjang * self.lebar * self.tinggi
+        print(f"Volume dari balok tersebut adalah: {volume:,.0f} cm³")
 
-limassegienam = LimasSegiEnam(la = 24, ta = 12)
-balok = Balok(p = 12, l = 24, t = 36)
+def input_handler():
+    while True:
+        pilihan = str(input("Masukkan Pilihan: "))
+        if pilihan == "1":
 
-pilihan = str(input("Masukkan Pilihan: "))
-if pilihan == "1":
-    limassegienam.limas_segienam_2()
+            while True:
+                try:
+                    input_alas = int(input("Masukkan Luas Alas: "))
+                    input_tinggi = int(input("Masukkan Tinggi Limas: "))
+                    break
 
-elif pilihan == "2":
-    balok.balok_2()
+                except ValueError:
+                    print("\nInput tidak valid!\n")
+                    continue
 
-else:
-    print("System Aborted!")
+            limas = LimasSegiEnam(luas_alas = input_alas, tinggi_limas = input_tinggi)
+            limas.limas_segienam_2()
 
-# print(f"{limas_segienam(la = 12, ta = 24)} cm³")
-# print(f"{balok(p = 6, l = 7, t = 8)} cm³")
+            break
 
-# print(f"{limassegienam.limas_segienam()} cm³")
-# limassegienam.limas_segienam_2()
+        elif pilihan == "2":
+            while True:
+                try:
+                    input_panjang = int(input("Masukkan Panjang Balok: "))
+                    input_lebar = int(input("Masukkan Lebar Balok: "))
+                    input_tinggi = int(input("Masukkan Tinggi Balok: "))
+                    break
+                
+                except ValueError:
+                    print("\nInput tidak valid!\n")
+                    continue
 
-# print()
+            balok = Balok(panjang = input_panjang, lebar = input_lebar, tinggi = input_tinggi)
+            balok.balok_2()
+            break
 
-# print(f"{balok.balok()} cm³")
+        else:
+            print("\nSystem Aborted!\n")
+            continue
+
+input_handler()
