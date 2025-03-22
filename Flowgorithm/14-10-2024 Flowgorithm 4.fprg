@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="14-10-2024 Flowgorithm 4"/>
+        <attribute name="authors" value="USER"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-15 09:58:48 AM"/>
+        <attribute name="created" value="VVNFUjtERVNLVE9QLVRONUtCUVA7MjAyNC0xMC0xNTswOTo1Njo0MiBBTTsyNjg5"/>
+        <attribute name="edited" value="VVNFUjtERVNLVE9QLVRONUtCUVA7MjAyNC0xMC0xNTswOTo1ODo0OCBBTTsxOzI4MDU="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="luas" type="Integer" array="False" size=""/>
+            <declare name="panjang" type="Integer" array="False" size=""/>
+            <output expression="&quot;Masukkan Luas Persegi&quot;" newline="True"/>
+            <input variable="luas"/>
+            <assign variable="panjang" expression="sqrt(luas)"/>
+            <output expression="&quot;Panjang dari sisi persegi tersebut ialah: &quot; &amp; panjang" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

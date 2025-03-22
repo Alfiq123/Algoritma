@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="14-10-2024 Flowgorithm 2"/>
+        <attribute name="authors" value="USER"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-14 12:48:49 PM"/>
+        <attribute name="created" value="VVNFUjtERVNLVE9QLVRONUtCUVA7MjAyNC0xMC0xNDsxMjo0MToxMyBQTTsyNjg5"/>
+        <attribute name="edited" value="VVNFUjtERVNLVE9QLVRONUtCUVA7MjAyNC0xMC0xNDsxMjo0ODo0OSBQTTsxOzI4MTM="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="luas" type="Integer" array="False" size=""/>
+            <declare name="alas" type="Integer" array="False" size=""/>
+            <declare name="tinggi" type="Integer" array="False" size=""/>
+            <output expression="&quot;Masukkan Luas segitiga:&quot;" newline="True"/>
+            <input variable="luas"/>
+            <output expression="&quot;Masukkan Alas segitiga:&quot;" newline="True"/>
+            <input variable="alas"/>
+            <assign variable="tinggi" expression="(2 * luas) / alas"/>
+            <output expression="&quot;Tinggi dari segitiga adalah: &quot; &amp; tinggi" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="14-10-2024 Flowgorithm 1"/>
+        <attribute name="authors" value="USER"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-14 12:31:50 PM"/>
+        <attribute name="created" value="VVNFUjtERVNLVE9QLVRONUtCUVA7MjAyNC0xMC0xNDswODozNToyNiBBTTsyNjg2"/>
+        <attribute name="edited" value="VVNFUjtERVNLVE9QLVRONUtCUVA7MjAyNC0xMC0xNDsxMjozMTo1MCBQTTsxOzI3OTc="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="luas" type="Integer" array="False" size=""/>
+            <declare name="diameter" type="Real" array="False" size=""/>
+            <output expression="&quot;Masukkan Luas Dari Lingkaran: &quot;" newline="True"/>
+            <input variable="luas"/>
+            <assign variable="diameter" expression="2 * sqrt(luas / pi)"/>
+            <output expression="&quot;Diameter dari lingkaran tersebut adalah: &quot; &amp; diameter" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

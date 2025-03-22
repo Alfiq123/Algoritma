@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="14-10-2024 Flowgorithm 5"/>
+        <attribute name="authors" value="USER"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-15 10:07:13 AM"/>
+        <attribute name="created" value="VVNFUjtERVNLVE9QLVRONUtCUVA7MjAyNC0xMC0xNTsxMDowMzowNyBBTTsyNjc0"/>
+        <attribute name="edited" value="VVNFUjtERVNLVE9QLVRONUtCUVA7MjAyNC0xMC0xNTsxMDowNzoxMyBBTTsxOzI3ODM="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="luas" type="Integer" array="False" size=""/>
+            <declare name="lebar" type="Integer" array="False" size=""/>
+            <declare name="panjang" type="Integer" array="False" size=""/>
+            <output expression="&quot;Masukkan Lebar persegi panjang:&quot;" newline="True"/>
+            <input variable="lebar"/>
+            <output expression="&quot;Masukkan Luas persegi panjang&quot;" newline="True"/>
+            <input variable="luas"/>
+            <assign variable="panjang" expression="luas / lebar"/>
+            <output expression="&quot;Panjang persegi panjang tersebut adalah: &quot; &amp; panjang" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

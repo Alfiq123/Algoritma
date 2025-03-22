@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="14-10-2024 Flowgorithm 9"/>
+        <attribute name="authors" value="USER"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-15 10:57:05 AM"/>
+        <attribute name="created" value="VVNFUjtERVNLVE9QLVRONUtCUVA7MjAyNC0xMC0xNTsxMDo1NDo0MCBBTTsyNjc3"/>
+        <attribute name="edited" value="VVNFUjtERVNLVE9QLVRONUtCUVA7MjAyNC0xMC0xNTsxMDo1NzowNSBBTTsxOzI3ODk="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="volume" type="Integer" array="False" size=""/>
+            <declare name="rusuk" type="Real" array="False" size=""/>
+            <output expression="&quot;Masukkan volume kubus:&quot;" newline="True"/>
+            <input variable="volume"/>
+            <assign variable="rusuk" expression="volume^(1/3)"/>
+            <output expression="&quot;Panjang rusuk kubus adalah: &quot; &amp; rusuk" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

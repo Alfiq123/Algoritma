@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="14-10-2024 Flowgorithm 8"/>
+        <attribute name="authors" value="USER"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-10-15 10:41:55 AM"/>
+        <attribute name="created" value="VVNFUjtERVNLVE9QLVRONUtCUVA7MjAyNC0xMC0xNTsxMDozODoyNyBBTTsyNjg0"/>
+        <attribute name="edited" value="VVNFUjtERVNLVE9QLVRONUtCUVA7MjAyNC0xMC0xNTsxMDo0MTo1NSBBTTsxOzI3ODc="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="totalbayar" type="Integer" array="False" size=""/>
+            <declare name="totalbelanja" type="Integer" array="False" size=""/>
+            <declare name="diskon" type="Real" array="False" size=""/>
+            <output expression="&quot;Masukkan total pembayaran:&quot;" newline="True"/>
+            <input variable="totalbayar"/>
+            <output expression="&quot;Masukkan total belanja-an:&quot;" newline="True"/>
+            <input variable="totalbelanja"/>
+            <assign variable="diskon" expression="(totalbayar - totalbelanja) / totalbayar"/>
+            <output expression="&quot;Persentase diskon yang didapat adalah: &quot; &amp; diskon" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
