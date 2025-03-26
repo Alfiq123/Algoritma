@@ -1,19 +1,19 @@
-class StudiA:
+import tkinter as tk
 
-    @staticmethod
-    def megabyte(kode, mb):
-        """ Menghitung harga berdasarkan rentang MB. """
-        harga_per_mb = {
-            "r": [(1, 50, 2000), (51, 80, 4500), (81, float("inf"), 6500)],
-            "c": [(1, 50, 5000), (51, 80, 7000), (81, float("inf"), 10000)],
-            "v": [(1, 50, 7500), (51, 80, 10000), (81, float("inf"), 15000)]
-        }
+root = tk.Tk()
+root.title("LabelFrame Text Centering")
 
-        if kode in harga_per_mb:
-            for (batas_bawah, batas_atas, harga) in (harga_per_mb[kode]):
-                if batas_bawah <= mb <= batas_atas:
-                    return f"Rp. {harga * mb:,.2f}"
-                
-            return "Error: Input tidak valid"
-        
-print(StudiA.megabyte("v", 100))
+labelframe = tk.LabelFrame(root, text="My Centered Label")
+labelframe.pack(padx=20, pady=20)
+
+#Method 1 using anchor.
+labelframe.config(labelanchor="n") #this positions the entire label at the top of the frame.
+labelframe.config(text="Centered Text")
+
+#Method 2 using justify.
+labelframe2 = tk.LabelFrame(root, text="Multi-line centering")
+labelframe2.pack(padx=20, pady=20)
+labelframe2.config(text="Multi line\nCentered Text")
+labelframe2.config(justify=tk.CENTER)
+
+root.mainloop()
