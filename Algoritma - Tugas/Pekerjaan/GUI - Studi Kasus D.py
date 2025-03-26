@@ -1,26 +1,25 @@
 import tkinter as tk
+from tkinter import ttk
 
-class StudiB:
+class StudiD:
 
     @staticmethod
-    def gedung(kategori, sewa):
-        if kategori == "a":
-            return f"Rp. {7000000 + (6500000 * (sewa - 1)):,.2f}"
-        elif kategori == "b":
-            return f"Rp. {8000000 + (7000000 * (sewa - 1)):,.2f}"
-        elif kategori == "c":
-            return f"Rp. {7500000 + (6000000 * (sewa - 1)):,.2f}"
+    def lahan(kategori, sewa):
+        if (kategori == "a"):
+            return f"Rp. {5000 + (3000 * (sewa - 1)):,.2f}"
+        elif (kategori == "b"):
+            return f"Rp. {7000 + (3500 * (sewa - 1)):,.2f}"
         else:
-            return None
-
-class Graphic(tk.Tk):
+            return f"Rp. {6000 + (2500 * (sewa - 1)):,.2f}"
+        
+class Gui(tk.Tk):
     def __init__(self):
         super().__init__()
 
         # Judul.
-        self.title("Persewaan Gudang")
+        self.title("Persewaan Lahan Parkir")
         self.resizable(width = False, height = False)
-        self.configure(background = "#F8F4E1")
+        self.configure(background = "#201E43")
 
         # Icon window.
         self_icon = tk.PhotoImage(file="Python_Intermediate/Python Project/Icon_Python.png")
@@ -29,7 +28,7 @@ class Graphic(tk.Tk):
         # Fungsi untuk menampilkan hasil.
         def show_result():
             try:
-                harga_sewa = StudiB.gedung(kategori = self.kategori_var.get(), sewa = self.entry_var.get())
+                harga_sewa = StudiD.lahan(kategori = self.kategori_var.get(), sewa = self.entry_var.get())
 
                 if self.entry_var.get() < 0:
                     raise ValueError
@@ -42,19 +41,19 @@ class Graphic(tk.Tk):
         # Garis pembatas.
         frame = tk.LabelFrame(
             master = self, 
-            text = "Pilihan Gedung", 
+            text = "Persewaan Lahan Parkir", 
             labelanchor="n", 
             font = ("Arial", 15, "bold"), 
-            background = "#F8F4E1",
-            foreground = "#74512D",
+            background = "#201E43",
+            foreground = "#508C9B",
             padx = 10, 
             pady = 10
             )
-        frame.configure(background = "#F8F4E1")
+        frame.configure(background = "#201E43")
         frame.pack(pady=10, fill="x", padx=10)
 
         # Pilihan gudang dalam bentuk radio.
-        gudang_list = [("(A) Barang Elektronik", "a"), ("(B) Bahan Bangunan", "b"), ("(C) Barang Mebeler", "c")]
+        gudang_list = [("(A) Kategori Sedan", "a"), ("(B) Kategori Minibus", "b"), ("(C) Kategori Truk", "c")]
         
         self.kategori_var = tk.StringVar(value = "a")
 
@@ -65,10 +64,10 @@ class Graphic(tk.Tk):
                 font = ("Arial", 12),
                 value = kategori, 
                 variable = self.kategori_var, 
-                background = "#F8F4E1",
-                foreground = "#74512D", 
-                activebackground = "#74512D", 
-                activeforeground = "#F8F4E1", 
+                background = "#201E43",
+                foreground = "#508C9B", 
+                activebackground = "#508C9B", 
+                activeforeground = "#201E43", 
                 width = 18, 
                 anchor = "w"
                 ).pack(padx=10, pady=1, anchor = "w")
@@ -79,8 +78,8 @@ class Graphic(tk.Tk):
             master = frame, 
             font = ("Arial", 12), 
             textvariable = self.entry_var, 
-            background = "#F8F4E1", 
-            foreground = "#74512D", 
+            background = "#201E43", 
+            foreground = "#508C9B", 
             width = 25
             )
         entry.pack(padx=10, pady=10, side = "left")
@@ -90,10 +89,10 @@ class Graphic(tk.Tk):
             master = frame, 
             text = "Hitung Sewa", 
             font = ("Arial", 12), 
-            background = "#F8F4E1", 
-            foreground = "#74512D", 
-            activeforeground = "#74512D", 
-            activebackground = "#F8F4E1", 
+            background = "#201E43", 
+            foreground = "#508C9B", 
+            activeforeground = "#508C9B", 
+            activebackground = "#201E43", 
             command = show_result
             )
         button.pack(padx = 10, pady = 10, side = "left")
@@ -105,11 +104,11 @@ class Graphic(tk.Tk):
             text = "Output", 
             textvariable = self.hasil_label_var , 
             font = ("Arial", 12), 
-            background = "#F8F4E1", 
-            foreground = "#74512D",
+            background = "#201E43", 
+            foreground = "#508C9B",
             )
         hasil_label.pack(pady = 10)
 
 if __name__ == "__main__":
-    app = Graphic()
+    app = Gui()
     app.mainloop()

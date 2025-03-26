@@ -42,14 +42,16 @@ class Graphics(tk.Tk):
                 hasil_label_var.set("Inputan harus angka positif!")
 
         # Frame (Garis).
-        frame = tk.LabelFrame(master = self, 
-                                text = "Pilihan Paket", 
-                                labelanchor="n", 
-                                font = ("Comic Sans MS", 12), 
-                                background = "#18230F",
-                                foreground = "#1F7D53",
-                                padx = 10, 
-                                pady = 10)
+        frame = tk.LabelFrame(
+            master = self, 
+            text = "Pilihan Paket", 
+            labelanchor="n", 
+            font = ("Comic Sans MS", 12), 
+            background = "#18230F",
+            foreground = "#1F7D53",
+            padx = 10, 
+            pady = 10
+            )
         frame.configure(background = "#18230F")
         frame.pack(pady=10, fill="x", padx=10)
 
@@ -59,58 +61,68 @@ class Graphics(tk.Tk):
         kode_str = tk.StringVar(value="r")
 
         for nama, kode in radio_list:
-            tk.Radiobutton(master = frame, 
-                            text = nama, 
-                            font = ("Comic Sans MS", 12), 
-                            variable = kode_str, 
-                            value = kode, 
-                            background = "#18230F", 
-                            foreground = "#1F7D53", 
-                            activeforeground = "#1F7D53", 
-                            activebackground = "#27391C", 
-                            width = 15, 
-                            anchor = "w").pack()
+            tk.Radiobutton(
+                master = frame, 
+                text = nama, 
+                font = ("Comic Sans MS", 12), 
+                variable = kode_str, 
+                value = kode, 
+                background = "#18230F", 
+                foreground = "#1F7D53", 
+                activeforeground = "#1F7D53", 
+                activebackground = "#27391C", 
+                width = 15, 
+                anchor = "w"
+                ).pack()
             
         # Frame (Garis).
-        frame2 = tk.LabelFrame(master = self, 
-                                text = "Masukkan Jumlah MB", 
-                                labelanchor="n", 
-                                font = ("Comic Sans MS", 12), 
-                                background = "#18230F",
-                                foreground = "#1F7D53", 
-                                padx = 10, 
-                                pady = 10)
+        frame2 = tk.LabelFrame(
+            master = self, 
+            text = "Masukkan Jumlah MB", 
+            labelanchor="n", 
+            font = ("Comic Sans MS", 12), 
+            background = "#18230F",
+            foreground = "#1F7D53", 
+            padx = 10, 
+            pady = 10
+            )
         frame2.configure(background = "#18230F")
         frame2.pack(padx=10, fill="x", pady=10)
     
         # Entry (Input).
         entry_int = tk.IntVar()
-        entry = tk.Entry(master = frame2, 
-                            font = ("Comic Sans MS", 12), 
-                            textvariable = entry_int, 
-                            background = "#27391C", 
-                            foreground = "#1F7D53")
+        entry = tk.Entry(
+            master = frame2, 
+            font = ("Comic Sans MS", 12), 
+            textvariable = entry_int, 
+            background = "#27391C", 
+            foreground = "#1F7D53"
+            )
         entry.pack()
 
         # Tombol Hitung.
-        button = tk.Button(master = frame2, 
-                            text = "Hitung Sewa", 
-                            font = ("Comic Sans MS", 12), 
-                            background = "#27391C", 
-                            foreground = "#1F7D53", 
-                            activeforeground = "#1F7D53", 
-                            activebackground = "#27391C", 
-                            command = button_command)
+        button = tk.Button(
+            master = frame2, 
+            text = "Hitung Sewa", 
+            font = ("Comic Sans MS", 12), 
+            background = "#27391C", 
+            foreground = "#1F7D53", 
+            activeforeground = "#1F7D53", 
+            activebackground = "#27391C", 
+            command = button_command
+            )
         button.pack(padx = 10, pady = 10)
 
         # Text Hasil.
         hasil_label_var = tk.StringVar()
-        hasil_label = tk.Label(master = self, 
-                                text = "Output", 
-                                textvariable = hasil_label_var, 
-                                font = ("Comic Sans MS", 12), 
-                                background = "#18230F", 
-                                foreground = "#1F7D53",)
+        hasil_label = tk.Label(
+            master = self, 
+            text = "Output", 
+            textvariable = hasil_label_var, 
+            font = ("Comic Sans MS", 12), 
+            background = "#18230F", 
+            foreground = "#1F7D53",
+            )
         hasil_label.pack()
 
 if __name__ == "__main__":
