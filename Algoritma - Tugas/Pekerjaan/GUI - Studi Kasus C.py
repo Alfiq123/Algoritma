@@ -26,9 +26,9 @@ class Graphical(tk.Tk):
         self.configure(background = "#003C43")
 
 
-        # Icon window.
-        self_icon = tk.PhotoImage(file = "Python_Intermediate/Python Project/Icon_Python.png")
-        self.iconphoto(True, self_icon)
+        # ! Icon window.
+        # self_icon = tk.PhotoImage(file = "Python_Intermediate/Python Project/Icon_Python.png")
+        # self.iconphoto(True, self_icon)
 
 
         # Fungsi perhitungan.

@@ -24,13 +24,17 @@ class Graphics(tk.Tk):
         self.resizable(width = False, height = False)
         self.configure(background = "#18230F")
 
-        # Window Icon
-        self_icon = tk.PhotoImage(file="Python_Intermediate/Python Project/Icon_Python.png")
-        self.iconphoto(True, self_icon)
+        # ! Window Icon
+        # self_icon = tk.PhotoImage(file="Python_Intermediate/Python Project/Icon_Python.png")
+        # self.iconphoto(True, self_icon)
 
         # Tombol Hitung Command.
         def button_command():
             try:
+                if len(str(entry_int.get())) > 13:
+                    hasil_label_var.set("Tidak boleh lebih dari 13 digit!")
+                    return None
+
                 harga_sewa = StudiA.megabyte(kode = kode_str.get(), mb = entry_int.get())
 
                 if harga_sewa == None:
@@ -51,7 +55,7 @@ class Graphics(tk.Tk):
             foreground = "#1F7D53",
             padx = 10, 
             pady = 10
-            )
+        )
         frame.configure(background = "#18230F")
         frame.pack(pady=10, fill="x", padx=10)
 
@@ -73,7 +77,7 @@ class Graphics(tk.Tk):
                 activebackground = "#27391C", 
                 width = 15, 
                 anchor = "w"
-                ).pack()
+            ).pack()
             
         # Frame (Garis).
         frame2 = tk.LabelFrame(
@@ -85,7 +89,7 @@ class Graphics(tk.Tk):
             foreground = "#1F7D53", 
             padx = 10, 
             pady = 10
-            )
+        )
         frame2.configure(background = "#18230F")
         frame2.pack(padx=10, fill="x", pady=10)
     
@@ -97,7 +101,7 @@ class Graphics(tk.Tk):
             textvariable = entry_int, 
             background = "#27391C", 
             foreground = "#1F7D53"
-            )
+        )
         entry.pack()
 
         # Tombol Hitung.
@@ -110,7 +114,7 @@ class Graphics(tk.Tk):
             activeforeground = "#1F7D53", 
             activebackground = "#27391C", 
             command = button_command
-            )
+        )
         button.pack(padx = 10, pady = 10)
 
         # Text Hasil.
@@ -122,7 +126,7 @@ class Graphics(tk.Tk):
             font = ("Comic Sans MS", 12), 
             background = "#18230F", 
             foreground = "#1F7D53",
-            )
+        )
         hasil_label.pack()
 
 if __name__ == "__main__":

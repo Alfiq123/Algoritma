@@ -22,16 +22,20 @@ class Graphic(tk.Tk):
         self.resizable(width = False, height = False)
         self.configure(background = "#F8F4E1")
 
-        # Icon window.
-        self_icon = tk.PhotoImage(file="Python_Intermediate/Python Project/Icon_Python.png")
-        self.iconphoto(True, self_icon)
+        # ! Icon window.
+        # self_icon = tk.PhotoImage(file="Python_Intermediate/Python Project/Icon_Python.png")
+        # self.iconphoto(True, self_icon)
 
         # Fungsi untuk menampilkan hasil.
         def show_result():
             try:
                 harga_sewa = StudiB.gedung(kategori = self.kategori_var.get(), sewa = self.entry_var.get())
+                
+                if len(str(self.entry_var.get())) > 13:
+                    self.hasil_label_var.set("Tidak boleh lebih dari 13 digit!")
+                    return None
 
-                if self.entry_var.get() < 0:
+                elif self.entry_var.get() <= 0:
                     raise ValueError
                 
                 self.hasil_label_var.set(harga_sewa)
@@ -42,14 +46,14 @@ class Graphic(tk.Tk):
         # Garis pembatas.
         frame = tk.LabelFrame(
             master = self, 
-            text = "Pilihan Gedung", 
+            text = " Pilihan Gedung ", 
             labelanchor="n", 
             font = ("Arial", 15, "bold"), 
             background = "#F8F4E1",
             foreground = "#74512D",
             padx = 10, 
             pady = 10
-            )
+        )
         frame.configure(background = "#F8F4E1")
         frame.pack(pady=10, fill="x", padx=10)
 
@@ -71,7 +75,7 @@ class Graphic(tk.Tk):
                 activeforeground = "#F8F4E1", 
                 width = 18, 
                 anchor = "w"
-                ).pack(padx=10, pady=1, anchor = "w")
+            ).pack(padx=10, pady=1, anchor = "w")
             
         # Input.
         self.entry_var = tk.IntVar(value = 10)
@@ -82,7 +86,7 @@ class Graphic(tk.Tk):
             background = "#F8F4E1", 
             foreground = "#74512D", 
             width = 25
-            )
+        )
         entry.pack(padx=10, pady=10, side = "left")
 
         # Tombol Hitung.
@@ -95,7 +99,7 @@ class Graphic(tk.Tk):
             activeforeground = "#74512D", 
             activebackground = "#F8F4E1", 
             command = show_result
-            )
+        )
         button.pack(padx = 10, pady = 10, side = "left")
 
         # Menampilkan Hasil.
@@ -107,7 +111,7 @@ class Graphic(tk.Tk):
             font = ("Arial", 12), 
             background = "#F8F4E1", 
             foreground = "#74512D",
-            )
+        )
         hasil_label.pack(pady = 10)
 
 if __name__ == "__main__":
