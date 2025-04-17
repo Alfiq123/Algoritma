@@ -65,71 +65,50 @@ class Fibonacci:
 " --- "
 
 
-def inputan():
+def cek_integer(perintah, negatif = False):
     while True:
         try:
-            print("Pilihan yang tersedia: \n  1. Pangkat, \n  2. Faktorial, \n  3. Fibonacci")
-            pilihan = int(input("\nMasukkan Pilihan: "))
-
-            # Pangkat
-            if pilihan == 1:
-                while True:
-                    try:
-                        nomor = int(input("Masukkan Nomor: "))
-                        eksponen = int(input("Masukkan Eksponen: "))
-                        if nomor < 0 or eksponen < 0:
-                            raise ValueError
-                    except ValueError:
-                        print("\nError: Input tidak valid!\n")
-                        continue
-                    break
-                hitung_pangkat = Pangkat(nomor, eksponen)
-                print(f"Rekursi: {nomor}^{eksponen} = {hitung_pangkat.pangkat_rekursi(nomor, eksponen):,}")
-                print(f"For Loop: {nomor}^{eksponen} = {hitung_pangkat.pangkat_for(nomor, eksponen):,}")
-                break
-
-
-            # Faktorial
-            elif pilihan == 2:
-                while True:
-                    try:
-                        nomor = int(input("Masukkan Nomor: "))
-                        if nomor < 0:
-                            raise ValueError
-                    except ValueError:
-                        print("\nError: Input tidak valid!\n")
-                        continue
-                    break
-
-                hitung_faktorial = Faktorial(nomor)
-                print(f"Rekursi: {nomor}! = {hitung_faktorial.faktorial_rekursi(nomor):,}")
-                print(f"For Loop: {nomor}! = {hitung_faktorial.factorial_for(nomor):,}")
-                break
-
-            # Fibonacci
-            elif pilihan == 3:
-                while True:
-                    try:
-                        nomor = int(input("Masukkan Nomor: "))
-                        if nomor < 0:
-                            raise ValueError
-                    except ValueError:
-                        print("\nError: Input tidak valid!\n")
-                        continue
-                    break
-
-                hitung_fibonacci = Fibonacci(nomor)
-                print(f"Rekursi: {nomor} = {hitung_fibonacci.fibonacci_rekursi(nomor):,}")
-                print(f"For Loop: {nomor} = {hitung_fibonacci.fibonacci_for(nomor):,}")
-                break
-
-            # Sisanya
-            else:
-                print("\nError: Pilihan tidak valid!\n")
-                continue
-        
+            integer = int(input(perintah))
+            if not negatif and integer < 0:
+                raise ValueError
+            return integer
         except ValueError:
-            print("\nError: Pilihan tidak valid!\n")
+            print("Input harus berupa bilangan" + ("." if negatif else " bulat positif."))
             continue
-            
+
+
+def inputan():
+    print("\nPilihan yang tersedia: \n  1. Pangkat, \n  2. Faktorial, \n  3. Fibonacci")
+    pilihan = cek_integer(perintah = "\nMasukkan pilihan: ", negatif = False)
+
+
+    # Pangkat
+    if pilihan == 1:
+        nomor = cek_integer(perintah = "Masukkan Nomor: ")
+        eksponen = cek_integer(perintah = "Masukkan Eksponen: ")
+        hasil = Pangkat(nomor, eksponen)
+        print(f"\nRekursi: {nomor}^{eksponen} = {hasil.pangkat_rekursi(nomor, eksponen):,}")
+        print(f"For Loop: {nomor}^{eksponen} = {hasil.pangkat_for(nomor, eksponen):,}")
+
+
+    # Faktorial
+    elif pilihan == 2:
+        nomor = cek_integer(perintah = "Masukkan Nomor: ")
+        hasil = Faktorial(nomor)
+        print(f"\nRekursi: {nomor}! = {hasil.faktorial_rekursi(nomor):,}")
+        print(f"For Loop: {nomor}! = {hasil.factorial_for(nomor):,}")
+
+
+    # Fibonacci
+    elif pilihan == 3:
+        nomor = cek_integer(perintah = "Masukkan Nomor: ")
+        hasil = Fibonacci(nomor)
+        print(f"\nRekursi: {nomor} = {hasil.fibonacci_rekursi(nomor):,}")
+        print(f"For Loop: {nomor} = {hasil.fibonacci_for(nomor):,}")
+
+
+    # Sisanya
+    else:
+        print("\nError: Pilihan tidak valid!")
+        
 inputan()
