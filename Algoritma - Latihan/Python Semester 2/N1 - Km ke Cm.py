@@ -33,7 +33,7 @@ output_string = tk.StringVar()
 output_label = ttk.Label(master = app, text = "Hasil", font= ("Times New Roman", 24), textvariable = output_string)
 output_label.pack(pady = 5)
 
-# Icon.
-app_icon = tk.PhotoImage(file="Python Project/Icon_Python.png")
-app.iconphoto(True, app_icon)
+# ! Icon.
+# app_icon = tk.PhotoImage(file="Python Project/Icon_Python.png")
+# app.iconphoto(True, app_icon)
 app.mainloop()
