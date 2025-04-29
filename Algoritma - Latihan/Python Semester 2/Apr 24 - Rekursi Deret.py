@@ -31,7 +31,7 @@ def deret5(n):
     if n == 1:
         return [round(2 / 3, 4)]
     else:
-        return deret5(n - 1) + [round((-1) ** (n + 1) * (2 / 3) ** n, 4)]
+        return deret5(n - 1) + [round((-1) ** (n + 1) * (2 ** n) / (3 ** n), 4)]
 
 print(deret1(10))
 print(deret2(10))
@@ -66,23 +66,23 @@ def deret_gpt2(n):
 def deret_gpt3(n):
     """ S = 1/1 - 2/2 + 3/3 - 4/4 + 5/5 - 6/6 + ... """
     if n == 1:
-        return [1 / 1]
+        return [1]
     else:
-        return deret_gpt3(n - 1) + [(-1) ** (n + 1) * (1 / 1) * n]
+        return deret_gpt3(n - 1) + [(-1) ** (n + 1) * 1]
 
 def deret_gpt4(n):
     """ S = 1/3 - 1/6 + 1/9 - 1/12 + 1/15 - ... """
     if n == 1:
-        return [1 / 3]
+        return [round(1 / 3), 4]
     else:
-        return deret_gpt4(n - 1) + [(-1) ** (n + 1) * (1 / (3 * n))]
+        return deret_gpt4(n - 1) + [round((-1) ** (n + 1) * (1 / (3 * n)), 4)]
     
 def deret_gpt5(n):
     """ S = 3/2 - 9/4 + 27/8 - 81/16 + ... """
     if n == 1:
-        return [3 / 2]
+        return [round(3 / 2)]
     else:
-        return deret_gpt5(n - 1) + [(-1) ** (n + 1) * (3 / 2) ** n]
+        return deret_gpt5(n - 1) + [round((-1) ** (n + 1) * (3 ** n) / (2 ** n), 4)]
 
 print(deret_gpt1(10))
 print(deret_gpt2(10))
