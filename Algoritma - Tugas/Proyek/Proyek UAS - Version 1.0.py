@@ -1,5 +1,4 @@
 import json
-
 from tabulate import tabulate
 
 
@@ -82,6 +81,19 @@ class Program:
         print("\n───── Menambah Barang ─────\n")
 
         barang_nama = str(input("Masukkan Nama Barang: ")).strip()
+
+        # Cek Duplikasi Nama Barang (case-insensitive)
+        for item in self.data:
+            if item["nama"].strip().lower() == barang_nama.lower():
+                print(
+                    f"\nBarang dengan nama <|{barang_nama}|> "
+                    f"sudah ada di inventori!\n"
+                )
+                return {}  # Kembalikan dict kosong sebagai sinyal
+            elif barang_nama == "":
+                print("\nNama barang tidak boleh kosong\n")
+                return {}
+
         barang_kuantitas = self.user_validation("Masukkan Kuantitas Barang: ")
         barang_harga = self.user_validation("Masukkan Harga Barang: ")
 
@@ -96,6 +108,9 @@ class Program:
         Menambahkan item baru ke file inventori.
         """
         if self.is_inventory_empty():
+            return
+        if not self.add_items():
+            print("\nProses penambahan dibatalkan.\n")
             return
 
         self.data.append(self.add_items())
@@ -117,10 +132,15 @@ class Program:
         if self.is_inventory_empty():
             return
 
-        # Memasukkan Nama.
-        nama_barang = str(
-            input("Masukkan nama barang yang ingin dihapus: ")
-        ).strip()
+        while True:
+            nama_barang = str(
+                input("Masukkan nama barang yang ingin dihapus: ")
+            ).strip()
+
+            if nama_barang == "":
+                print("\nNama barang tidak boleh kosong!\n")
+                continue
+            break
 
         # Cek Inventori (Kosong/Tidak).
         # if not self.data:
@@ -195,7 +215,6 @@ class Program:
         if index != -1:
             item = self.data[index]
             table = [[
-                index + 1,
                 item["nama"],
                 item["kuantitas"],
                 item["harga"]
@@ -324,14 +343,12 @@ class Program:
         result = []
 
         # Loop melalui setiap item dengan index-nya
-        for index, item_data in enumerate(items):
+        for item_data in items:
             # Membuat entry baru untuk setiap item:
-            # - Nomor urut (index + 1 karena index mulai dari 0)
             # - Nama item
             # - Kuantitas item
             # - Harga item
             new_entry = [
-                index + 1,  # Nomor urut
                 item_data['nama'],  # Nama item
                 item_data['kuantitas'],  # Jumlah item
                 item_data['harga']  # Harga per item
@@ -352,9 +369,16 @@ class Program:
     def show_table(table) -> None:
         print(tabulate(
             table,
-            headers=["ID", "Item", "Quantity", "Price"],
+            headers=["Item", "Quantity", "Price"],
             tablefmt="fancy_grid"
         ))
+
+    # def show_table(table) -> None:
+        # print(tabulate(
+            # table,
+            # headers=["ID", "Item", "Quantity", "Price"],
+            # tablefmt="fancy_grid"
+        # ))
 
     def is_inventory_empty(self) -> bool:
         if not self.data:
