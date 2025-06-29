@@ -1,4 +1,5 @@
 import json
+import sys
 from tabulate import tabulate
 
 
@@ -27,7 +28,7 @@ from tabulate import tabulate
 
 class Program:
     def __init__(self) -> None:
-        self.filename = "Product_Lists_2.json"
+        self.filename = "Product_Lists_3.json"
         self.data = self.load_data()
 
     @staticmethod
@@ -96,9 +97,9 @@ class Program:
         Menambahkan item baru ke file inventori.
         """
         self.data.append(self.add_items())
-        self.save_data(self.data)
+        self.save_data(data=self.data)
         print(
-            f"\nBarang '{self.data[-1]['nama']}' "
+            f"\nBarang <|{self.data[-1]['nama']}|> "
             f"berhasil ditambahkan ke inventori.\n"
         )
 
@@ -109,37 +110,54 @@ class Program:
 
         self.open_json_file()
 
+        # 1. Memasukkan Nama.
         nama_barang = str(
             input("Masukkan nama barang yang ingin dihapus: ")
         ).strip()
 
-        # Jika inventori kosong
+        # 2. Cek Inventori (Kosong/Tidak).
         if not self.data:
             print("Inventori kosong.")
             return
 
         # Menghitung jumlah barang sebelum dihapus
-        jumlah_sebelum = len(self.data)
+        # jumlah_sebelum = len(self.data)
 
         # Membuat list baru tanpa barang yang namanya sesuai (case-insensitive)
-        data_baru = [
-            item for item in self.data
-            if item['nama'].strip().lower() != nama_barang.lower()
-        ]
+        # data_baru = [
+            # item
+            # for item
+            # in self.data
+            # if item["nama"].strip().lower() != nama_barang.lower()
+        # ]
+
+        data_baru = []  # List kosong untuk menampung item yang tidak dihapus
+
+        for item in self.data:
+            # Normalisasi nama item
+            nama_item = item["nama"].strip().lower()
+
+            # Normalisasi nama yang ingin dihapus
+            nama_target = nama_barang.lower()
+
+            if nama_item != nama_target:
+                # Tambahkan item ke data_baru kalau tidak sama
+                data_baru.append(item)
 
         # Menghitung jumlah barang yang terhapus
-        jumlah_terhapus = jumlah_sebelum - len(data_baru)
+        jumlah_terhapus = len(self.data) - len(data_baru)
 
         if jumlah_terhapus == 0:
             print(
                 f"\nBarang '{nama_barang}' tidak ditemukan dalam inventori!"
             )
+
         else:
             # Menyimpan data baru ke file
             self.save_data(data_baru)
             print(
                 f"\nBerhasil menghapus {jumlah_terhapus} "
-                f"barang '{nama_barang}'!"
+                f"barang <|{nama_barang}|>!"
             )
 
     # TODO: [3] Cari Barang.
@@ -229,11 +247,9 @@ class Program:
 
     def open_json_file(self):
         """ Membuka File JSON """
-        data = self.load_data()
-
-        if not data:
+        if not self.data:
             print("Inventori kosong.")
-            return
+            return sys.exit()
 
         self.show_table(table=self.generate_table(self.data))
 
