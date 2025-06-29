@@ -1,5 +1,5 @@
 import json
-import sys
+
 from tabulate import tabulate
 
 
@@ -28,7 +28,7 @@ from tabulate import tabulate
 
 class Program:
     def __init__(self) -> None:
-        self.filename = "Product_Lists_3.json"
+        self.filename = "Product_Lists_2.json"
         self.data = self.load_data()
 
     @staticmethod
@@ -74,11 +74,10 @@ class Program:
                 continue
 
     # TODO: [1] Tambah Barang.
-    # ████████░░
+    # █████████░
     def add_items(self) -> dict[str, str | int]:
         """
         Fungsi untuk menambahkan barang ke Inventori.
-        Return: Dictionary
         """
         print("\n───── Menambah Barang ─────\n")
 
@@ -96,6 +95,9 @@ class Program:
         """
         Menambahkan item baru ke file inventori.
         """
+        if self.is_inventory_empty():
+            return
+
         self.data.append(self.add_items())
         self.save_data(data=self.data)
         print(
@@ -103,22 +105,27 @@ class Program:
             f"berhasil ditambahkan ke inventori.\n"
         )
 
+        self.open_json_file()
+
     # TODO: [2] Hapus Barang.
-    # █████░░░░░
+    # █████████░
     def delete_items(self) -> None:
         print("\n───── Menghapus Barang ─────\n")
 
         self.open_json_file()
 
-        # 1. Memasukkan Nama.
+        if self.is_inventory_empty():
+            return
+
+        # Memasukkan Nama.
         nama_barang = str(
             input("Masukkan nama barang yang ingin dihapus: ")
         ).strip()
 
-        # 2. Cek Inventori (Kosong/Tidak).
-        if not self.data:
-            print("Inventori kosong.")
-            return
+        # Cek Inventori (Kosong/Tidak).
+        # if not self.data:
+            # print("Inventori kosong.")
+            # return
 
         # Menghitung jumlah barang sebelum dihapus
         # jumlah_sebelum = len(self.data)
@@ -161,16 +168,17 @@ class Program:
             )
 
     # TODO: [3] Cari Barang.
-    # ████████░░
+    # █████████░
     def find_items(self) -> None:
         """
         Dungsi untuk mencari barang di Inventori menggunakan Binary Search
         """
-        nama_barang = str(input("Masukkan Nama Barang Yang Ingin Dicari: "))
-        # data = self.load_data()
-        if not self.data:
-            print("Inventori kosong.")
+        print("\n───── Mencari Barang ─────\n")
+
+        if self.is_inventory_empty():
             return
+
+        nama_barang = str(input("Masukkan Nama Barang Yang Ingin Dicari: "))
 
         # Urutkan data berdasarkan nama barang (wajib untuk binary search!)
         self.quicksort(
@@ -182,22 +190,23 @@ class Program:
 
         # Ambil hanya list nama untuk dicari
         nama_list = [item["nama"] for item in self.data]
-        index = self.binary_search(nama_list, nama_barang)
+        index = self.binary_search(arr=nama_list, target=nama_barang)
 
         if index != -1:
             item = self.data[index]
-            table = [
-                [
-                    index + 1, item["nama"], item["kuantitas"], item["harga"]
-                ]
-            ]
+            table = [[
+                index + 1,
+                item["nama"],
+                item["kuantitas"],
+                item["harga"]
+            ]]
             self.show_table(table=table)
 
         else:
             print(f"Barang dengan nama '{nama_barang}' tidak ditemukan.")
 
     # TODO: [4] Urutkan Barang.
-    # ████████░░
+    # █████████░
     def sort_items(self) -> None:
         print("\n───── Mengurutkan Barang ─────\n")
 
@@ -224,7 +233,12 @@ class Program:
             print("Pilihan tidak valid!")
             return
 
-        self.quicksort(self.data, 0, len(self.data) - 1, pilihan_key)
+        self.quicksort(
+            array=self.data,
+            low=0,
+            high=len(self.data) - 1,
+            key=pilihan_key
+        )
 
         print(f"\nInventori setelah diurutkan berdasarkan {pilihan_key}:\n")
         self.show_table(table=self.generate_table(self.data))
@@ -245,12 +259,8 @@ class Program:
         with open(self.filename, "w") as file:
             json.dump(data, file, indent=4)
 
-    def open_json_file(self):
+    def open_json_file(self) -> None:
         """ Membuka File JSON """
-        if not self.data:
-            print("Inventori kosong.")
-            return sys.exit()
-
         self.show_table(table=self.generate_table(self.data))
 
     #        ─────────────── END ───────────────        #
@@ -305,22 +315,52 @@ class Program:
     # ═══════════════════════════════════════════════════ #
 
     @staticmethod
-    def show_table(table):
+    def generate_table(items) -> list[list[int | str]]:
+        """Membuat tabel dari data barang (1 atau banyak)."""
+        if not isinstance(items, list):
+            items = [items]
+
+        # Membuat list kosong untuk menyimpan hasil
+        result = []
+
+        # Loop melalui setiap item dengan index-nya
+        for index, item_data in enumerate(items):
+            # Membuat entry baru untuk setiap item:
+            # - Nomor urut (index + 1 karena index mulai dari 0)
+            # - Nama item
+            # - Kuantitas item
+            # - Harga item
+            new_entry = [
+                index + 1,  # Nomor urut
+                item_data['nama'],  # Nama item
+                item_data['kuantitas'],  # Jumlah item
+                item_data['harga']  # Harga per item
+            ]
+
+            # Tambahkan entry baru ke dalam hasil
+            result.append(new_entry)
+
+        # Kembalikan list hasil yang sudah dibuat
+        return result
+
+        # return [
+            # [idx + 1, item['nama'], item['kuantitas'], item['harga']]
+            # for idx, item in enumerate(items)
+        # ]
+
+    @staticmethod
+    def show_table(table) -> None:
         print(tabulate(
             table,
             headers=["ID", "Item", "Quantity", "Price"],
             tablefmt="fancy_grid"
         ))
 
-    @staticmethod
-    def generate_table(items):
-        """Membuat tabel dari data barang (1 atau banyak)."""
-        if not isinstance(items, list):
-            items = [items]
-        return [
-            [idx + 1, item['nama'], item['kuantitas'], item['harga']]
-            for idx, item in enumerate(items)
-        ]
+    def is_inventory_empty(self) -> bool:
+        if not self.data:
+            print("Inventori kosong.")
+            return True
+        return False
 
     def running(self):
         self.pilihan_menu()

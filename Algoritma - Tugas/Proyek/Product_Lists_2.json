@@ -15,13 +15,28 @@
         "harga": 500
     },
     {
-        "nama": "Jagung",
-        "kuantitas": 500,
-        "harga": 5000
-    },
-    {
         "nama": "Pensil",
         "kuantitas": 1280,
         "harga": 1000
+    },
+    {
+        "nama": "Pulpen",
+        "kuantitas": 3000,
+        "harga": 2000
+    },
+    {
+        "nama": "Kipas",
+        "kuantitas": 100,
+        "harga": 50000
+    },
+    {
+        "nama": "Baju Bekas",
+        "kuantitas": 3000,
+        "harga": 20000
+    },
+    {
+        "nama": "Bantal",
+        "kuantitas": 100,
+        "harga": 20000
     }
 ]
