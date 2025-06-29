@@ -1,12 +1,32 @@
 [
     {
-        "nama": "Pisang",
-        "harga": 900000,
-        "kuantitas": 300
-    },
-    {
         "nama": "Ayam Bakar",
         "kuantitas": 100,
         "harga": 25000
+    },
+    {
+        "nama": "Roti Bakar",
+        "kuantitas": 200,
+        "harga": 10000
+    },
+    {
+        "nama": "Beng-Beng",
+        "kuantitas": 800,
+        "harga": 500
+    },
+    {
+        "nama": "Jagung",
+        "kuantitas": 500,
+        "harga": 5000
+    },
+    {
+        "nama": "Ikan",
+        "kuantitas": 100,
+        "harga": 100000
+    },
+    {
+        "nama": "Pensil",
+        "kuantitas": 1280,
+        "harga": 1000
     }
 ]
