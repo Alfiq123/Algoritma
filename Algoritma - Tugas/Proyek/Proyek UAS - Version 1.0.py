@@ -52,25 +52,20 @@ class Program:
             "  [x] Memasukkan Data (.json) - Deprecated\n"
             "  [6] Tampilkan Data\n"
         )
+        actions = {
+            "1": self.add_item_to_inventory,
+            "2": self.delete_items,
+            "3": self.find_items,
+            "4": self.sort_items,
+            "6": self.open_json_file,
+        }
+
         while True:
-            pilihan = str(input("Masukkan Pilihan Kamu: "))
-            if pilihan == "1":
-                self.add_item_to_inventory()
-                break
-            elif pilihan == "2":
-                self.delete_items()
-                break
-            elif pilihan == "3":
-                self.find_items()
-                break
-            elif pilihan == "4":
-                self.sort_items()
-                break
-            elif pilihan == "6":
-                self.open_json_file()
-                break
-            else:
-                continue
+            pilihan = input("Masukkan Pilihan Kamu: ").strip()
+            action = actions.get(pilihan)
+            if action: action(); break
+            else: print("\nPilihan tidak valid. Silakan coba lagi.\n")
+
 
     # TODO: [1] Tambah Barang.
     # █████████░
@@ -107,13 +102,12 @@ class Program:
         """
         Menambahkan item baru ke file inventori.
         """
-        if self.is_inventory_empty():
-            return
-        if not self.add_items():
-            print("\nProses penambahan dibatalkan.\n")
-            return
+        tambah_item = self.add_items()
 
-        self.data.append(self.add_items())
+        if self.is_inventory_empty(): return
+        if not tambah_item: print("\nProses penambahan dibatalkan.\n"); return
+
+        self.data.append(tambah_item)
         self.save_data(data=self.data)
         print(
             f"\nBarang <|{self.data[-1]['nama']}|> "
@@ -129,8 +123,7 @@ class Program:
 
         self.open_json_file()
 
-        if self.is_inventory_empty():
-            return
+        if self.is_inventory_empty(): return
 
         while True:
             nama_barang = str(
@@ -195,8 +188,7 @@ class Program:
         """
         print("\n───── Mencari Barang ─────\n")
 
-        if self.is_inventory_empty():
-            return
+        if self.is_inventory_empty(): return
 
         nama_barang = str(input("Masukkan Nama Barang Yang Ingin Dicari: "))
 
@@ -221,16 +213,14 @@ class Program:
             ]]
             self.show_table(table=table)
 
-        else:
-            print(f"Barang dengan nama '{nama_barang}' tidak ditemukan.")
+        else: print(f"Barang dengan nama '{nama_barang}' tidak ditemukan.")
 
     # TODO: [4] Urutkan Barang.
     # █████████░
     def sort_items(self) -> None:
         print("\n───── Mengurutkan Barang ─────\n")
 
-        if not self.data:
-            print("Inventori kosong.")
+        if self.is_inventory_empty():
             return
 
         print(
