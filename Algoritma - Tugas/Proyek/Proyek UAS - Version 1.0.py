@@ -27,11 +27,11 @@ from tabulate import tabulate
 
 class Program:
     def __init__(self) -> None:
-        self.filename = "Product_Lists_2.json"
-        self.data = self.load_data()
+        self.namafile = "Product_Lists_2.json"
+        self.data = self.muat_data()
 
     @staticmethod
-    def user_validation(prompt: str) -> int | None:
+    def pilihan_validasi(prompt: str) -> int | None:
         while True:
             try:
                 valid_value = int(input(prompt))
@@ -49,15 +49,17 @@ class Program:
             "  [2] Hapus Barang\n"
             "  [3] Cari Barang\n"
             "  [4] Urutkan Barang\n"
-            "  [x] Memasukkan Data (.json) - Deprecated\n"
             "  [6] Tampilkan Data\n"
+            "\n"
+            "  [x] Mengurangi Barang\n"
+            "  [x] Memasukkan Data (.json) - Deprecated\n"
         )
         actions = {
-            "1": self.add_item_to_inventory,
-            "2": self.delete_items,
-            "3": self.find_items,
-            "4": self.sort_items,
-            "6": self.open_json_file,
+            "1": self.tambah_barang,
+            "2": self.hapus_barang,
+            "3": self.cari_barang,
+            "4": self.urutkan_barang,
+            "6": self.buka_file_json,
         }
 
         while True:
@@ -66,64 +68,78 @@ class Program:
             if action: action(); break
             else: print("\nPilihan tidak valid. Silakan coba lagi.\n")
 
-
     # TODO: [1] Tambah Barang.
     # █████████░
-    def add_items(self) -> dict[str, str | int]:
+    def kumpulkan_item(self) -> dict[str, str | int]:
         """
-        Fungsi untuk menambahkan barang ke Inventori.
+        Mengumpulkan informasi barang baru dari pengguna.
+
+        Melakukan input nama barang, memvalidasi agar tidak duplikat
+        atau kosong, serta meminta kuantitas dan harga dengan
+        validasi tambahan.
+
+        Returns:
+            dict[str, str | int]: Dictionary berisi data barang yang valid,
+            atau dictionary kosong jika proses dibatalkan.
         """
         print("\n───── Menambah Barang ─────\n")
 
-        barang_nama = str(input("Masukkan Nama Barang: ")).strip()
+        nama_barang = str(input("Masukkan Nama Barang: ")).strip()
 
         # Cek Duplikasi Nama Barang (case-insensitive)
         for item in self.data:
-            if item["nama"].strip().lower() == barang_nama.lower():
+            if item["nama"].strip().lower() == nama_barang.lower():
                 print(
-                    f"\nBarang dengan nama <|{barang_nama}|> "
+                    f"\nBarang dengan nama <|{nama_barang}|> "
                     f"sudah ada di inventori!\n"
                 )
-                return {}  # Kembalikan dict kosong sebagai sinyal
-            elif barang_nama == "":
+                return {}
+            elif nama_barang == "":
                 print("\nNama barang tidak boleh kosong\n")
                 return {}
 
-        barang_kuantitas = self.user_validation("Masukkan Kuantitas Barang: ")
-        barang_harga = self.user_validation("Masukkan Harga Barang: ")
+        kuantitas_barang = self.pilihan_validasi("Masukkan Kuantitas Barang: ")
+        harga_barang = self.pilihan_validasi("Masukkan Harga Barang: ")
 
         return {
-            "nama": barang_nama,
-            "kuantitas": barang_kuantitas,
-            "harga": barang_harga
+            "nama": nama_barang,
+            "kuantitas": kuantitas_barang,
+            "harga": harga_barang
         }
 
-    def add_item_to_inventory(self) -> None:
+    def tambah_barang(self) -> None:
         """
-        Menambahkan item baru ke file inventori.
-        """
-        tambah_item = self.add_items()
+        Menambahkan barang baru ke dalam inventori.
 
-        if self.is_inventory_empty(): return
+        Memanggil fungsi `collect_item()` untuk input data.
+
+        Jika data valid dan inventori tidak kosong,
+        data disimpan dan file diperbarui.
+
+        Menampilkan pesan konfirmasi setelah penambahan berhasil.
+        """
+        tambah_item = self.kumpulkan_item()
+
+        if self.is_inventory_kosong(): return
         if not tambah_item: print("\nProses penambahan dibatalkan.\n"); return
 
         self.data.append(tambah_item)
-        self.save_data(data=self.data)
+        self.simpan_data(data=self.data)
         print(
             f"\nBarang <|{self.data[-1]['nama']}|> "
             f"berhasil ditambahkan ke inventori.\n"
         )
 
-        self.open_json_file()
+        self.buka_file_json()
 
     # TODO: [2] Hapus Barang.
     # █████████░
-    def delete_items(self) -> None:
+    def hapus_barang(self) -> None:
         print("\n───── Menghapus Barang ─────\n")
 
-        self.open_json_file()
+        self.buka_file_json()
 
-        if self.is_inventory_empty(): return
+        if self.is_inventory_kosong(): return
 
         while True:
             nama_barang = str(
@@ -174,7 +190,7 @@ class Program:
 
         else:
             # Menyimpan data baru ke file
-            self.save_data(data_baru)
+            self.simpan_data(data_baru)
             print(
                 f"\nBerhasil menghapus {jumlah_terhapus} "
                 f"barang <|{nama_barang}|>!"
@@ -182,13 +198,13 @@ class Program:
 
     # TODO: [3] Cari Barang.
     # █████████░
-    def find_items(self) -> None:
+    def cari_barang(self) -> None:
         """
         Dungsi untuk mencari barang di Inventori menggunakan Binary Search
         """
         print("\n───── Mencari Barang ─────\n")
 
-        if self.is_inventory_empty(): return
+        if self.is_inventory_kosong(): return
 
         nama_barang = str(input("Masukkan Nama Barang Yang Ingin Dicari: "))
 
@@ -211,17 +227,16 @@ class Program:
                 item["kuantitas"],
                 item["harga"]
             ]]
-            self.show_table(table=table)
+            self.lihat_tabel(table=table)
 
         else: print(f"Barang dengan nama '{nama_barang}' tidak ditemukan.")
 
     # TODO: [4] Urutkan Barang.
     # █████████░
-    def sort_items(self) -> None:
+    def urutkan_barang(self) -> None:
         print("\n───── Mengurutkan Barang ─────\n")
 
-        if self.is_inventory_empty():
-            return
+        if self.is_inventory_kosong(): return
 
         print(
             "Urutkan Berdasarkan:\n"
@@ -250,27 +265,27 @@ class Program:
         )
 
         print(f"\nInventori setelah diurutkan berdasarkan {pilihan_key}:\n")
-        self.show_table(table=self.generate_table(self.data))
+        self.lihat_tabel(table=self.generate_tabel(self.data))
 
     # ═══════════════ JSON FILE HANDLER ═══════════════ #
     #       ─────────────── BEGIN ───────────────       #
 
-    def load_data(self):
+    def muat_data(self):
         """ Memuat File JSON """
         try:
-            with open(self.filename, "r") as file:
+            with open(self.namafile, "r") as file:
                 return json.load(file)
         except (FileNotFoundError, json.JSONDecodeError):
             return []
 
-    def save_data(self, data):
+    def simpan_data(self, data):
         """ Menyimpan File JSON """
-        with open(self.filename, "w") as file:
+        with open(self.namafile, "w") as file:
             json.dump(data, file, indent=4)
 
-    def open_json_file(self) -> None:
+    def buka_file_json(self) -> None:
         """ Membuka File JSON """
-        self.show_table(table=self.generate_table(self.data))
+        self.lihat_tabel(table=self.generate_tabel(self.data))
 
     #        ─────────────── END ───────────────        #
     # ═════════════════════════════════════════════════ #
@@ -324,10 +339,9 @@ class Program:
     # ═══════════════════════════════════════════════════ #
 
     @staticmethod
-    def generate_table(items) -> list[list[int | str]]:
+    def generate_tabel(items) -> list[list[int | str]]:
         """Membuat tabel dari data barang (1 atau banyak)."""
-        if not isinstance(items, list):
-            items = [items]
+        if not isinstance(items, list): items = [items]
 
         # Membuat list kosong untuk menyimpan hasil
         result = []
@@ -356,29 +370,29 @@ class Program:
         # ]
 
     @staticmethod
-    def show_table(table) -> None:
+    def lihat_tabel(table) -> None:
         print(tabulate(
-            table,
+            tabular_data=table,
             headers=["Item", "Quantity", "Price"],
             tablefmt="fancy_grid"
         ))
 
     # def show_table(table) -> None:
         # print(tabulate(
-            # table,
+            # tabular_data=table,
             # headers=["ID", "Item", "Quantity", "Price"],
             # tablefmt="fancy_grid"
         # ))
 
-    def is_inventory_empty(self) -> bool:
+    def is_inventory_kosong(self) -> bool:
         if not self.data:
             print("Inventori kosong.")
             return True
         return False
 
-    def running(self):
+    def jalankan(self):
         self.pilihan_menu()
 
 
 if __name__ == "__main__":
-    Program().running()
+    Program().jalankan()

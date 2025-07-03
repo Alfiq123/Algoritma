@@ -38,5 +38,10 @@
         "nama": "Ponsel",
         "kuantitas": 100,
         "harga": 2500000
+    },
+    {
+        "nama": "Charger",
+        "kuantitas": 300,
+        "harga": 20000
     }
 ]
