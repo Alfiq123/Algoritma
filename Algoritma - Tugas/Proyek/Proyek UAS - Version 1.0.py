@@ -31,7 +31,7 @@ class Program:
         self.data = self.muat_data()
 
     @staticmethod
-    def pilihan_validasi(prompt: str) -> int | None:
+    def validasi_integer(prompt: str) -> int | None:
         while True:
             try:
                 valid_value = int(input(prompt))
@@ -100,8 +100,8 @@ class Program:
                 print("\nNama barang tidak boleh kosong\n")
                 return {}
 
-        kuantitas_barang = self.pilihan_validasi("Masukkan Kuantitas Barang: ")
-        harga_barang = self.pilihan_validasi("Masukkan Harga Barang: ")
+        kuantitas_barang = self.validasi_integer("Masukkan Kuantitas Barang: ")
+        harga_barang = self.validasi_integer("Masukkan Harga Barang: ")
 
         return {
             "nama": nama_barang,
@@ -134,10 +134,40 @@ class Program:
 
         self.buka_file_json()
 
+    # TODO: [2] Mengurangi / Mengambil Barang.
     def ambil_barang(self):
-        pass
+        self.buka_file_json()
 
-    # TODO: [2] Hapus Barang.
+        if self.is_inventory_kosong(): return
+
+        nama_barang = str(input("\nMasukkan Nama Barang: "))
+        jumlah_barang = self.validasi_integer("Masukkan Jumlah Barang: ")
+
+        for item in self.data:
+            if item["nama"].lower() != nama_barang.lower(): continue
+
+            if jumlah_barang > item["kuantitas"]:
+                print(
+                    f'\nGagal mengambil barang: stok "{item["nama"]}" '
+                    f'hanya {item["kuantitas"]}, tidak cukup untuk '
+                    f'mengambil {jumlah_barang}.\n'
+                )
+                return
+
+            item["kuantitas"] -= jumlah_barang
+            self.simpan_data(data=self.data)
+
+            if item["kuantitas"] > 5:
+                print(
+                    f"[⚠️] Peringatan: Sisa stok '{item['nama']}' "
+                    f"tinggal {item['kuantitas']}!"
+                )
+
+            return
+
+        print(f"Barang '{nama_barang}' tidak ditemukan di inventaris.")
+
+    # TODO: [3] Hapus Barang.
     # █████████░
     def hapus_barang(self) -> None:
         print("\n───── Menghapus Barang ─────\n")
@@ -201,7 +231,7 @@ class Program:
                 f"barang <|{nama_barang}|>!"
             )
 
-    # TODO: [3] Cari Barang.
+    # TODO: [4] Cari Barang.
     # █████████░
     def cari_barang(self) -> None:
         """
@@ -236,7 +266,7 @@ class Program:
 
         else: print(f"Barang dengan nama '{nama_barang}' tidak ditemukan.")
 
-    # TODO: [4] Urutkan Barang.
+    # TODO: [5] Urutkan Barang.
     # █████████░
     def urutkan_barang(self) -> None:
         print("\n───── Mengurutkan Barang ─────\n")
