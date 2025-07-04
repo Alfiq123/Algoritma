@@ -46,9 +46,10 @@ class Program:
         print(
             "Pilihan Menu:\n"
             "  [1] Tambah Barang\n"
-            "  [2] Hapus Barang\n"
-            "  [3] Cari Barang\n"
-            "  [4] Urutkan Barang\n"
+            "  [2] Ambil Barang\n"
+            "  [3] Hapus Barang\n"
+            "  [4] Cari Barang\n"
+            "  [5] Urutkan Barang\n"
             "  [6] Tampilkan Data\n"
             "\n"
             "  [x] Mengurangi Barang\n"
@@ -56,9 +57,10 @@ class Program:
         )
         actions = {
             "1": self.tambah_barang,
-            "2": self.hapus_barang,
-            "3": self.cari_barang,
-            "4": self.urutkan_barang,
+            "2": self.ambil_barang,
+            "3": self.hapus_barang,
+            "4": self.cari_barang,
+            "5": self.urutkan_barang,
             "6": self.buka_file_json,
         }
 
@@ -132,6 +134,9 @@ class Program:
 
         self.buka_file_json()
 
+    def ambil_barang(self):
+        pass
+
     # TODO: [2] Hapus Barang.
     # █████████░
     def hapus_barang(self) -> None:
@@ -143,7 +148,7 @@ class Program:
 
         while True:
             nama_barang = str(
-                input("Masukkan nama barang yang ingin dihapus: ")
+                input("\nMasukkan nama barang yang ingin dihapus: ")
             ).strip()
 
             if nama_barang == "":
@@ -286,6 +291,12 @@ class Program:
     def buka_file_json(self) -> None:
         """ Membuka File JSON """
         self.lihat_tabel(table=self.generate_tabel(self.data))
+        for item in self.data:
+            if item["kuantitas"] <= 5:
+                print(
+                    f"Peringatan: Stok '{item['nama']}' "
+                    f"hampir habis ({item['kuantitas']} unit)"
+                )
 
     #        ─────────────── END ───────────────        #
     # ═════════════════════════════════════════════════ #

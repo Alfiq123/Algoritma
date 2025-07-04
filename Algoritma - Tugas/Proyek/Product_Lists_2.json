@@ -21,7 +21,7 @@
     },
     {
         "nama": "Kipas",
-        "kuantitas": 100,
+        "kuantitas": 5,
         "harga": 50000
     },
     {
@@ -36,7 +36,7 @@
     },
     {
         "nama": "Ponsel",
-        "kuantitas": 100,
+        "kuantitas": 5,
         "harga": 2500000
     },
     {
