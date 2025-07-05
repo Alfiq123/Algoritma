@@ -8,19 +8,22 @@ from tabulate import tabulate
 
 # Main Menu.
 # TODO: [x] Buat tampilan menu.
-# TODO: [ ] Mengatur data di dalam `.json`.
 
 # User Interaction.
 # TODO: [x] User dapat menambahkan barang.
+# TODO: [x] User dapat mengurangi barnag.
 # TODO: [x] User dapat menghapus barang.
 # TODO: [x] User dapat mencari barang.
 # TODO: [x] User dapat mengurutkan barang.
-# TODO: [ ] User dapat mengurangi barnag. - Obsolete.
-# TODO: [ ] User dapat peringatan ketika barangnya hampir habis. - Obsolete.
+# TODO: [x] User dapat mengedit barang.
+# TODO: [x] User dapat peringatan ketika barangnya hampir habis.
 
 # Algorithm.
 # TODO: [x] Buat Algoritma Quick Sort.
 # TODO: [x] Buat Algoritma Binary Search
+
+# Deprecated.
+# TODO: Deprecated: [ ] Mengatur data di dalam `.json`.
 
 # GUI.
 # TODO: FINAL - [ ] Buat PyQt.
@@ -34,11 +37,11 @@ class Program:
     def validasi_integer(prompt: str) -> int | None:
         while True:
             try:
-                valid_value = int(input(prompt))
-                if valid_value < 0:
+                angka_valid = int(input(prompt))
+                if angka_valid < 0:
                     print("\nError: Nilai tidak boleh dibawah nol!\n")
                     continue
-                return valid_value
+                return angka_valid
             except ValueError:
                 print("\nError: Input tidak valid! Masukkan angka bulat.\n")
 
@@ -50,10 +53,8 @@ class Program:
             "  [3] Hapus Barang\n"
             "  [4] Cari Barang\n"
             "  [5] Urutkan Barang\n"
-            "  [6] Tampilkan Data\n"
-            "\n"
-            "  [x] Mengurangi Barang\n"
-            "  [x] Memasukkan Data (.json) - Deprecated\n"
+            "  [6] Edit Barang\n"
+            "  [7] Tampilkan Data\n"
         )
         actions = {
             "1": self.tambah_barang,
@@ -61,7 +62,8 @@ class Program:
             "3": self.hapus_barang,
             "4": self.cari_barang,
             "5": self.urutkan_barang,
-            "6": self.buka_file_json,
+            "6": self.edit_barang,
+            "7": self.buka_file_json
         }
 
         while True:
@@ -71,7 +73,6 @@ class Program:
             else: print("\nPilihan tidak valid. Silakan coba lagi.\n")
 
     # TODO: [1] Tambah Barang.
-    # █████████░
     def kumpulkan_item(self) -> dict[str, str | int]:
         """
         Mengumpulkan informasi barang baru dari pengguna.
@@ -88,17 +89,22 @@ class Program:
 
         nama_barang = str(input("Masukkan Nama Barang: ")).strip()
 
+        if not nama_barang:
+            print("\nNama barang tidak boleh kosong\n")
+            return {}
+
+        # Kode dibatalkan.
         # Cek Duplikasi Nama Barang (case-insensitive)
-        for item in self.data:
-            if item["nama"].strip().lower() == nama_barang.lower():
-                print(
-                    f"\nBarang dengan nama <|{nama_barang}|> "
-                    f"sudah ada di inventori!\n"
-                )
-                return {}
-            elif nama_barang == "":
-                print("\nNama barang tidak boleh kosong\n")
-                return {}
+        # for item in self.data:
+            # if item["nama"].lower().strip() == nama_barang.lower():
+                # print(
+                    # f"\nBarang dengan nama <|{nama_barang}|> "
+                    # f"sudah ada di inventori!\n"
+                # )
+                # return {}
+            # elif nama_barang == "":
+                # print("\nNama barang tidak boleh kosong\n")
+                # return {}
 
         kuantitas_barang = self.validasi_integer("Masukkan Kuantitas Barang: ")
         harga_barang = self.validasi_integer("Masukkan Harga Barang: ")
@@ -113,26 +119,75 @@ class Program:
         """
         Menambahkan barang baru ke dalam inventori.
 
-        Memanggil fungsi `collect_item()` untuk input data.
-
+        Memanggil fungsi `kumpulkan_item()` untuk input data.
         Jika data valid dan inventori tidak kosong,
         data disimpan dan file diperbarui.
 
         Menampilkan pesan konfirmasi setelah penambahan berhasil.
         """
         tambah_item = self.kumpulkan_item()
+        if not tambah_item:
+            print("\nProses penambahan dibatalkan.\n")
+            return
 
-        if self.is_inventory_kosong(): return
-        if not tambah_item: print("\nProses penambahan dibatalkan.\n"); return
+        # Cek duplikasi nama barang (case-insensitive)
+        for item in self.data:
+            if item["nama"].lower() == tambah_item["nama"].lower():
+                print(
+                    f"\nBarang < {tambah_item['nama']} > sudah ada di inventori!"
+                    f"\n  • Kuantitas saat ini: {item['kuantitas']}"
+                    f"\n  • Harga saat ini: Rp {item['harga']:,}\n"
+                )
 
+                # Konfirmasi tambah kuantitas
+                tambah_stok = input(
+                    "Tambah kuantitas ke stok yang ada? (y/n): "
+                ).strip().lower()
+
+                if tambah_stok != 'y':
+                    print("\nPenambahan dibatalkan.\n")
+                    return
+
+                # Tambahkan kuantitas ke stok yang ada
+                item["kuantitas"] += tambah_item["kuantitas"]
+
+                # Konfirmasi update harga jika berbeda
+                if item["harga"] != tambah_item["harga"]:
+                    print(
+                        f"\nHarga berbeda!"
+                        f"\n  • Harga lama: Rp {item['harga']:,}"
+                        f"\n  • Harga baru: Rp {tambah_item['harga']:,}"
+                    )
+
+                    update_harga = input(
+                        "Update harga barang? (y/n): "
+                    ).strip().lower()
+
+                    if update_harga == 'y':
+                        item["harga"] = tambah_item["harga"]
+                        print(f"Harga diperbarui: Rp {tambah_item['harga']:,}")
+
+                # Simpan perubahan
+                self.simpan_data(data=self.data)
+                self.buka_file_json()
+                print(
+                    f"\nStok < {item['nama']} > berhasil ditambahkan!"
+                    f"\n  • Kuantitas baru: {item['kuantitas']}"
+                    f"\n  • Harga saat ini: Rp {item['harga']:,}\n"
+                )
+
+                return
+
+        # Jika tidak ada duplikasi, tambahkan barang baru
         self.data.append(tambah_item)
         self.simpan_data(data=self.data)
-        print(
-            f"\nBarang <|{self.data[-1]['nama']}|> "
-            f"berhasil ditambahkan ke inventori.\n"
-        )
-
         self.buka_file_json()
+        print(
+            f"\nBarang < {tambah_item['nama']} > "
+            f"berhasil ditambahkan ke inventori!"
+            f"\n  • Kuantitas: {tambah_item['kuantitas']}"
+            f"\n  • Harga: {tambah_item['harga']}\n"
+        )
 
     # TODO: [2] Mengurangi / Mengambil Barang.
     def ambil_barang(self):
@@ -148,7 +203,7 @@ class Program:
 
             if jumlah_barang > item["kuantitas"]:
                 print(
-                    f'\nGagal mengambil barang: stok "{item["nama"]}" '
+                    f'\nGagal mengambil barang: stok < {item["nama"]} > '
                     f'hanya {item["kuantitas"]}, tidak cukup untuk '
                     f'mengambil {jumlah_barang}.\n'
                 )
@@ -156,19 +211,19 @@ class Program:
 
             item["kuantitas"] -= jumlah_barang
             self.simpan_data(data=self.data)
+            self.buka_file_json()
 
-            if item["kuantitas"] > 5:
+            if item["kuantitas"] < 10:
                 print(
-                    f"[⚠️] Peringatan: Sisa stok '{item['nama']}' "
+                    f"Peringatan: Sisa stok < {item['nama']} > "
                     f"tinggal {item['kuantitas']}!"
                 )
 
             return
 
-        print(f"Barang '{nama_barang}' tidak ditemukan di inventaris.")
+        print(f"Barang < {nama_barang} > tidak ditemukan di inventaris.")
 
     # TODO: [3] Hapus Barang.
-    # █████████░
     def hapus_barang(self) -> None:
         print("\n───── Menghapus Barang ─────\n")
 
@@ -220,19 +275,19 @@ class Program:
 
         if jumlah_terhapus == 0:
             print(
-                f"\nBarang '{nama_barang}' tidak ditemukan dalam inventori!"
+                f"\nBarang < {nama_barang} > tidak ditemukan dalam inventori!"
             )
 
         else:
             # Menyimpan data baru ke file
             self.simpan_data(data_baru)
+            self.buka_file_json()
             print(
                 f"\nBerhasil menghapus {jumlah_terhapus} "
-                f"barang <|{nama_barang}|>!"
+                f"barang < {nama_barang} >!"
             )
 
     # TODO: [4] Cari Barang.
-    # █████████░
     def cari_barang(self) -> None:
         """
         Dungsi untuk mencari barang di Inventori menggunakan Binary Search
@@ -241,7 +296,9 @@ class Program:
 
         if self.is_inventory_kosong(): return
 
-        nama_barang = str(input("Masukkan Nama Barang Yang Ingin Dicari: "))
+        nama_barang = str(input(
+            "Masukkan Nama Barang Yang Ingin Dicari: "
+        )).title()
 
         # Urutkan data berdasarkan nama barang (wajib untuk binary search!)
         self.quicksort(
@@ -267,7 +324,6 @@ class Program:
         else: print(f"Barang dengan nama '{nama_barang}' tidak ditemukan.")
 
     # TODO: [5] Urutkan Barang.
-    # █████████░
     def urutkan_barang(self) -> None:
         print("\n───── Mengurutkan Barang ─────\n")
 
@@ -302,6 +358,60 @@ class Program:
         print(f"\nInventori setelah diurutkan berdasarkan {pilihan_key}:\n")
         self.lihat_tabel(table=self.generate_tabel(self.data))
 
+    # TODO: [6] Edit Barang.
+    def edit_barang(self) -> None:
+        print("\n───── Mengedit Barang ─────\n")
+
+        self.buka_file_json()
+
+        nama_barang = input("\nMasukkan nama barang yang ingin diedit: ").strip()
+
+        for barang in self.data:
+            if barang["nama"].lower() == nama_barang.lower():
+                print(
+                    f"\nData saat ini:\n"
+                    f"  Nama     : {barang['nama']}\n"
+                    f"  Kuantitas: {barang['kuantitas']}\n"
+                    f"  Harga    : Rp {barang['harga']:,}\n"
+                    f"\nPilih data yang ingin diubah:\n"
+                    f"  1. Nama\n"
+                    f"  2. Kuantitas\n"
+                    f"  3. Harga\n"
+                )
+                keymap = {
+                    "1": "nama",
+                    "2": "kuantitas",
+                    "3": "harga"
+                }
+                pilihan = input("Masukkan pilihan (1/2/3): ").strip()
+
+                if pilihan not in keymap:
+                    print("\nPilihan tidak valid!\n")
+                    return
+
+                key = keymap[pilihan]
+
+                if key == "nama":
+                    nama_baru = input("Masukkan nama baru: ").strip()
+                    if not nama_baru:
+                        print("\nNama tidak boleh kosong!\n"); return
+                    barang["nama"] = nama_baru
+
+                elif key == "kuantitas":
+                    kuantitas_baru = self.validasi_integer(
+                        "Masukkan kuantitas baru: ")
+                    if kuantitas_baru is None:
+                        print("Input dibatalkan atau tidak valid."); return
+                    barang["kuantitas"] = kuantitas_baru
+
+                elif key == "harga":
+                    harga_baru = self.validasi_integer("Masukkan harga baru: ")
+                    if harga_baru is None:
+                        print("Input dibatalkan atau tidak valid."); return
+                    barang["harga"] = harga_baru
+
+        self.simpan_data(data=self.data)
+
     # ═══════════════ JSON FILE HANDLER ═══════════════ #
     #       ─────────────── BEGIN ───────────────       #
 
@@ -320,9 +430,17 @@ class Program:
 
     def buka_file_json(self) -> None:
         """ Membuka File JSON """
+        self.data = self.muat_data()  # Ini penting!
+
         self.lihat_tabel(table=self.generate_tabel(self.data))
+
         for item in self.data:
-            if item["kuantitas"] <= 5:
+            if item["kuantitas"] == 0:
+                print(
+                    f"Peringatan: Stok '{item['nama']} "
+                    f"telah habis' ({item['kuantitas']} unit)"
+                )
+            elif item["kuantitas"] <= 10:
                 print(
                     f"Peringatan: Stok '{item['nama']}' "
                     f"hampir habis ({item['kuantitas']} unit)"
@@ -390,13 +508,13 @@ class Program:
         # Loop melalui setiap item dengan index-nya
         for item_data in items:
             # Membuat entry baru untuk setiap item:
-            # - Nama item
-            # - Kuantitas item
-            # - Harga item
+            #   - Nama item
+            #   - Kuantitas item
+            #   - Harga item
             new_entry = [
-                item_data['nama'],  # Nama item
-                item_data['kuantitas'],  # Jumlah item
-                item_data['harga']  # Harga per item
+                item_data["nama"],  # Nama item
+                item_data["kuantitas"],  # Jumlah item
+                f'Rp {item_data["harga"]:,}'  # Harga per item
             ]
 
             # Tambahkan entry baru ke dalam hasil
@@ -406,7 +524,12 @@ class Program:
         return result
 
         # return [
-            # [idx + 1, item['nama'], item['kuantitas'], item['harga']]
+            # [
+                # idx + 1,
+                # item['nama'],
+                # item['kuantitas'],
+                # item['harga']
+            # ]
             # for idx, item in enumerate(items)
         # ]
 
@@ -414,7 +537,7 @@ class Program:
     def lihat_tabel(table) -> None:
         print(tabulate(
             tabular_data=table,
-            headers=["Item", "Quantity", "Price"],
+            headers=["Nama", "Kuantitas", "Harga"],
             tablefmt="fancy_grid"
         ))
 

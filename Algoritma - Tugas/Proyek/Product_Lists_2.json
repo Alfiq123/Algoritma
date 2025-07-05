@@ -15,13 +15,8 @@
         "harga": 1000
     },
     {
-        "nama": "Pulpen",
-        "kuantitas": 3000,
-        "harga": 2000
-    },
-    {
         "nama": "Kipas",
-        "kuantitas": 5,
+        "kuantitas": 236,
         "harga": 50000
     },
     {
@@ -36,12 +31,27 @@
     },
     {
         "nama": "Ponsel",
-        "kuantitas": 5,
+        "kuantitas": 200,
         "harga": 2500000
     },
     {
         "nama": "Charger",
         "kuantitas": 300,
         "harga": 20000
+    },
+    {
+        "nama": "Dompet",
+        "kuantitas": 500,
+        "harga": 12000
+    },
+    {
+        "nama": "kipas",
+        "kuantitas": 300,
+        "harga": 50000
+    },
+    {
+        "nama": "Selimut",
+        "kuantitas": 400,
+        "harga": 45000
     }
 ]
