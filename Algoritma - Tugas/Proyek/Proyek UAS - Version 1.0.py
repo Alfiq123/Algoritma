@@ -30,7 +30,7 @@ from tabulate import tabulate
 
 class Program:
     def __init__(self) -> None:
-        self.namafile = "Product_Lists_2.json"
+        self.namafile = "Product_Lists.json"
         self.data = self.muat_data()
 
     @staticmethod
@@ -55,6 +55,8 @@ class Program:
             "  [5] Urutkan Barang\n"
             "  [6] Edit Barang\n"
             "  [7] Tampilkan Data\n"
+            "\n"
+            "  [X] Keluar\n"
         )
         actions = {
             "1": self.tambah_barang,
@@ -63,13 +65,14 @@ class Program:
             "4": self.cari_barang,
             "5": self.urutkan_barang,
             "6": self.edit_barang,
-            "7": self.buka_file_json
+            "7": self.buka_file_json,
         }
 
         while True:
             pilihan = input("Masukkan Pilihan Kamu: ").strip()
             action = actions.get(pilihan)
             if action: action(); break
+            elif pilihan in ("x", "X"): break
             else: print("\nPilihan tidak valid. Silakan coba lagi.\n")
 
     # TODO: [1] Tambah Barang.
@@ -92,19 +95,6 @@ class Program:
         if not nama_barang:
             print("\nNama barang tidak boleh kosong\n")
             return {}
-
-        # Kode dibatalkan.
-        # Cek Duplikasi Nama Barang (case-insensitive)
-        # for item in self.data:
-            # if item["nama"].lower().strip() == nama_barang.lower():
-                # print(
-                    # f"\nBarang dengan nama <|{nama_barang}|> "
-                    # f"sudah ada di inventori!\n"
-                # )
-                # return {}
-            # elif nama_barang == "":
-                # print("\nNama barang tidak boleh kosong\n")
-                # return {}
 
         kuantitas_barang = self.validasi_integer("Masukkan Kuantitas Barang: ")
         harga_barang = self.validasi_integer("Masukkan Harga Barang: ")
@@ -241,22 +231,6 @@ class Program:
                 continue
             break
 
-        # Cek Inventori (Kosong/Tidak).
-        # if not self.data:
-            # print("Inventori kosong.")
-            # return
-
-        # Menghitung jumlah barang sebelum dihapus
-        # jumlah_sebelum = len(self.data)
-
-        # Membuat list baru tanpa barang yang namanya sesuai (case-insensitive)
-        # data_baru = [
-            # item
-            # for item
-            # in self.data
-            # if item["nama"].strip().lower() != nama_barang.lower()
-        # ]
-
         data_baru = []  # List kosong untuk menampung item yang tidak dihapus
 
         for item in self.data:
@@ -321,7 +295,7 @@ class Program:
             ]]
             self.lihat_tabel(table=table)
 
-        else: print(f"Barang dengan nama '{nama_barang}' tidak ditemukan.")
+        else: print(f"Barang dengan nama < {nama_barang} > tidak ditemukan.")
 
     # TODO: [5] Urutkan Barang.
     def urutkan_barang(self) -> None:
@@ -366,13 +340,13 @@ class Program:
 
         nama_barang = input("\nMasukkan nama barang yang ingin diedit: ").strip()
 
-        for barang in self.data:
-            if barang["nama"].lower() == nama_barang.lower():
+        for item in self.data:
+            if item["nama"].lower() == nama_barang.lower():
                 print(
                     f"\nData saat ini:\n"
-                    f"  Nama     : {barang['nama']}\n"
-                    f"  Kuantitas: {barang['kuantitas']}\n"
-                    f"  Harga    : Rp {barang['harga']:,}\n"
+                    f"  Nama     : {item['nama']}\n"
+                    f"  Kuantitas: {item['kuantitas']}\n"
+                    f"  Harga    : Rp {item['harga']:,}\n"
                     f"\nPilih data yang ingin diubah:\n"
                     f"  1. Nama\n"
                     f"  2. Kuantitas\n"
@@ -395,22 +369,24 @@ class Program:
                     nama_baru = input("Masukkan nama baru: ").strip()
                     if not nama_baru:
                         print("\nNama tidak boleh kosong!\n"); return
-                    barang["nama"] = nama_baru
+                    item["nama"] = nama_baru
 
                 elif key == "kuantitas":
                     kuantitas_baru = self.validasi_integer(
-                        "Masukkan kuantitas baru: ")
+                        "Masukkan kuantitas baru: "
+                    )
                     if kuantitas_baru is None:
                         print("Input dibatalkan atau tidak valid."); return
-                    barang["kuantitas"] = kuantitas_baru
+                    item["kuantitas"] = kuantitas_baru
 
                 elif key == "harga":
                     harga_baru = self.validasi_integer("Masukkan harga baru: ")
                     if harga_baru is None:
                         print("Input dibatalkan atau tidak valid."); return
-                    barang["harga"] = harga_baru
+                    item["harga"] = harga_baru
 
         self.simpan_data(data=self.data)
+        self.buka_file_json()
 
     # ═══════════════ JSON FILE HANDLER ═══════════════ #
     #       ─────────────── BEGIN ───────────────       #
@@ -523,16 +499,6 @@ class Program:
         # Kembalikan list hasil yang sudah dibuat
         return result
 
-        # return [
-            # [
-                # idx + 1,
-                # item['nama'],
-                # item['kuantitas'],
-                # item['harga']
-            # ]
-            # for idx, item in enumerate(items)
-        # ]
-
     @staticmethod
     def lihat_tabel(table) -> None:
         print(tabulate(
@@ -540,13 +506,6 @@ class Program:
             headers=["Nama", "Kuantitas", "Harga"],
             tablefmt="fancy_grid"
         ))
-
-    # def show_table(table) -> None:
-        # print(tabulate(
-            # tabular_data=table,
-            # headers=["ID", "Item", "Quantity", "Price"],
-            # tablefmt="fancy_grid"
-        # ))
 
     def is_inventory_kosong(self) -> bool:
         if not self.data:
